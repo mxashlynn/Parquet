@@ -12,8 +12,6 @@ const Parquet.Beings.PronounGroup.ObjectiveTag = "|them|" -> string
 const Parquet.Beings.PronounGroup.PossessiveTag = "|theirs|" -> string
 const Parquet.Beings.PronounGroup.ReflexiveTag = "|themselves|" -> string
 const Parquet.Beings.PronounGroup.SubjectiveTag = "|they|" -> string
-const Parquet.Crafts.StrikePanelGrid.PanelsPerPatternHeight = 4 -> int
-const Parquet.Crafts.StrikePanelGrid.PanelsPerPatternWidth = 4 -> int
 const Parquet.Delimiters.DimensionalDelimiter = "×" -> string
 const Parquet.Delimiters.DimensionalTerminator = "≡" -> string
 const Parquet.Delimiters.ElementDelimiter = "–" -> string
@@ -300,10 +298,8 @@ Parquet.Biomes.IMutableBiomeRecipe.Tier.get -> int
 Parquet.Biomes.IMutableBiomeRecipe.Tier.set -> void
 Parquet.Crafts.CraftConfiguration
 Parquet.Crafts.CraftingRecipe
-Parquet.Crafts.CraftingRecipe.CraftingRecipe(Parquet.ModelID id, string name, string description, string comment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> tags = null, System.Collections.Generic.IEnumerable<Parquet.RecipeElement> products = null, System.Collections.Generic.IEnumerable<Parquet.RecipeElement> ingredients = null, Parquet.IReadOnlyGrid<Parquet.Crafts.StrikePanel> panelPattern = null) -> void
+Parquet.Crafts.CraftingRecipe.CraftingRecipe(Parquet.ModelID id, string name, string description, string comment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> tags = null, System.Collections.Generic.IEnumerable<Parquet.RecipeElement> products = null, System.Collections.Generic.IEnumerable<Parquet.RecipeElement> ingredients = null) -> void
 Parquet.Crafts.CraftingRecipe.Ingredients.get -> System.Collections.Generic.IReadOnlyList<Parquet.RecipeElement>
-Parquet.Crafts.CraftingRecipe.PanelPattern.get -> Parquet.IReadOnlyGrid<Parquet.Crafts.StrikePanel>
-Parquet.Crafts.CraftingRecipe.PanelPatternReplace(Parquet.IGrid<Parquet.Crafts.StrikePanel> replacement) -> void
 Parquet.Crafts.CraftingRecipe.Products.get -> System.Collections.Generic.IReadOnlyList<Parquet.RecipeElement>
 Parquet.Crafts.IMutableCraftingRecipe
 Parquet.Crafts.IMutableCraftingRecipe.Ingredients.get -> System.Collections.Generic.ICollection<Parquet.RecipeElement>
@@ -583,7 +579,7 @@ Parquet.Parquets.FloorStatus.IsTrench.get -> bool
 Parquet.Parquets.FloorStatus.IsTrench.set -> void
 Parquet.Parquets.FurnishingModel
 Parquet.Parquets.FurnishingModel.Entry.get -> Parquet.Parquets.EntryType
-Parquet.Parquets.FurnishingModel.FurnishingModel(Parquet.ModelID id, string name, string description, string comment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> tags = null, Parquet.ModelID? itemID = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> addsToBiome = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> addsToRoom = null, bool isWalkable = false, Parquet.Parquets.EntryType isEntry = Parquet.Parquets.EntryType.None, bool isEnclosing = false, bool isFlammable = false, bool isOpenable = false) -> void
+Parquet.Parquets.FurnishingModel.FurnishingModel(Parquet.ModelID id, string name, string description, string comment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> tags = null, Parquet.ModelID? itemID = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> addsToBiome = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> addsToRoom = null, bool isWalkable = false, Parquet.Parquets.EntryType entry = Parquet.Parquets.EntryType.None, bool isEnclosing = false, bool isFlammable = false, bool isOpenable = false) -> void
 Parquet.Parquets.FurnishingModel.IsEnclosing.get -> bool
 Parquet.Parquets.FurnishingModel.IsFlammable.get -> bool
 Parquet.Parquets.FurnishingModel.IsOpenable.get -> bool

@@ -506,7 +506,6 @@ namespace Parquet
                 { typeof(Range<int>), Range<int>.ConverterFactory },
                 { typeof(RecipeElement), RecipeElement.ConverterFactory },
                 { typeof(ScriptNode), ScriptNode.ConverterFactory },
-                { typeof(StrikePanel), StrikePanel.ConverterFactory },
                 #endregion
 
                 #region Linear Series Types
@@ -525,15 +524,12 @@ namespace Parquet
                 { typeof(IGrid<ModelID>), GridConverter<ModelID, ModelIDGrid>.ConverterFactory },
                 { typeof(IGrid<ParquetModelPack>), GridConverter<ParquetModelPack, ParquetModelPackGrid>.ConverterFactory },
                 { typeof(IGrid<ParquetStatusPack>), GridConverter<ParquetStatusPack, ParquetStatusPackGrid>.ConverterFactory },
-                { typeof(IGrid<StrikePanel>), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
                 { typeof(IReadOnlyGrid<ModelID>), GridConverter<ModelID, ModelIDGrid>.ConverterFactory },
                 { typeof(IReadOnlyGrid<ParquetModelPack>), GridConverter<ParquetModelPack, ParquetModelPackGrid>.ConverterFactory },
                 { typeof(IReadOnlyGrid<ParquetStatusPack>), GridConverter<ParquetStatusPack, ParquetStatusPackGrid>.ConverterFactory },
-                { typeof(IReadOnlyGrid<StrikePanel>), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
                 { typeof(ModelIDGrid), GridConverter<ModelID, ModelIDGrid>.ConverterFactory },
                 { typeof(ParquetModelPackGrid), GridConverter<ParquetModelPack, ParquetModelPackGrid>.ConverterFactory },
                 { typeof(ParquetStatusPackGrid), GridConverter<ParquetStatusPack, ParquetStatusPackGrid>.ConverterFactory },
-                { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
                 #endregion
             };
             #endregion

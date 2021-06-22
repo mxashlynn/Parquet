@@ -16,12 +16,5 @@ namespace Parquet.Crafts
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
         public ICollection<RecipeElement> Ingredients { get; }
-
-        /// <summary>The arrangement of panels encompassed by this recipe.</summary>
-        public IGrid<StrikePanel> PanelPattern { get; }
-
-        /// <summary>Replaces the content of <see cref="PanelPattern"/> with the given pattern.</summary>
-        /// <param name="replacement">The new pattern to use.</param>
-        public void PanelPatternReplace(IGrid<StrikePanel> replacement);
     }
 }

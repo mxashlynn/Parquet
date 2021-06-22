@@ -25,8 +25,7 @@ namespace Parquet.Crafts
         public static CraftingRecipe NotCraftable { get; } = new CraftingRecipe(ModelID.None, "Not Craftable",
                                                                                 "Not Craftable", "", null,
                                                                                 EmptyCraftingElementList,
-                                                                                EmptyCraftingElementList,
-                                                                                StrikePanelGrid.Empty);
+                                                                                EmptyCraftingElementList);
         #endregion
 
         #region Characteristics
@@ -37,10 +36,6 @@ namespace Parquet.Crafts
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
         [Index(6)]
         public IReadOnlyList<RecipeElement> Ingredients { get; }
-
-        /// <summary>The arrangement of panels encompassed by this recipe.</summary>
-        [Index(7)]
-        public IReadOnlyGrid<StrikePanel> PanelPattern { get; private set; }
         #endregion
 
         #region Initialization
@@ -54,19 +49,13 @@ namespace Parquet.Crafts
         /// <param name="tags">Any additional functionality this <see cref="CraftingRecipe"/> has.</param>
         /// <param name="products">The types and quantities of <see cref="Items.ItemModel"/>s created by following this recipe once.</param>
         /// <param name="ingredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
-        /// <param name="panelPattern">The arrangement of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
-        /// <remarks>
-        /// <paramref name="panelPattern"/> must have dimensions between <c>1</c> and those given by
-        /// <see cref="StrikePanelGrid.PanelsPerPatternWidth"/> and <see cref="StrikePanelGrid.PanelsPerPatternHeight"/>.
-        /// </remarks>
         public CraftingRecipe(ModelID id, string name, string description, string comment,
                               IEnumerable<ModelTag> tags = null, IEnumerable<RecipeElement> products = null,
-                              IEnumerable<RecipeElement> ingredients = null, IReadOnlyGrid<StrikePanel> panelPattern = null)
+                              IEnumerable<RecipeElement> ingredients = null)
             : base(All.CraftingRecipeIDs, id, name, description, comment, tags)
         {
             var nonNullProducts = products ?? Enumerable.Empty<RecipeElement>();
             var nonNullIngredients = ingredients ?? Enumerable.Empty<RecipeElement>();
-            var nonNullPanelPattern = panelPattern ?? StrikePanelGrid.Empty;
 
             // NOTE that these two checks should not be made from within editing tools.
             if (LibraryState.IsPlayMode)
@@ -87,17 +76,8 @@ namespace Parquet.Crafts
                 }
             }
 
-            if (nonNullPanelPattern.Rows > StrikePanelGrid.PanelsPerPatternHeight
-                || nonNullPanelPattern.Columns > StrikePanelGrid.PanelsPerPatternWidth)
-            {
-                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture,
-                                                           Resources.ErrorUnsupportedDimension,
-                                                           nameof(panelPattern)));
-            }
-
             Products = nonNullProducts.ToList();
             Ingredients = nonNullIngredients.ToList();
-            PanelPattern = nonNullPanelPattern;
         }
         #endregion
 
@@ -123,21 +103,6 @@ namespace Parquet.Crafts
             => LibraryState.IsPlayMode
                 ? Logger.DefaultWithImmutableInPlayLog(nameof(Ingredients), new Collection<RecipeElement>())
                 : (ICollection<RecipeElement>)Ingredients;
-
-        /// <summary>The arrangement of panels encompassed by this recipe.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="CraftingRecipe"/> should never themselves use <see cref="IMutableCraftingRecipe"/>.
-        /// IMutableCraftingRecipe is for external types that require read-write access.
-        /// </remarks>
-        [Ignore]
-        IGrid<StrikePanel> IMutableCraftingRecipe.PanelPattern => (IGrid<StrikePanel>)PanelPattern;
-
-        /// <summary>Replaces the content of <see cref="PanelPattern"/> with the given pattern.</summary>
-        /// <param name="replacement">The new pattern to use.</param>
-        public void PanelPatternReplace(IGrid<StrikePanel> replacement)
-            => PanelPattern = LibraryState.IsPlayMode
-                ? Logger.DefaultWithImmutableInPlayLog(nameof(PanelPattern), PanelPattern)
-                : replacement as StrikePanelGrid ?? StrikePanelGrid.Empty;
         #endregion
     }
 }

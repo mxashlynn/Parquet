@@ -161,8 +161,7 @@ namespace ParquetUnitTests
             TestCharacter = new CharacterModel(-All.CharacterIDs.Minimum, "2 Test Character", "Test", "Test", null, All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
             TestBiome = new BiomeRecipe(-All.BiomeRecipeIDs.Minimum, "3 Test Biome", "Test", "Test", null, 1, false, false, null, null);
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe", "Test", "Test",
-                                                    null, TestRecipeElementList, TestRecipeElementList,
-                                                    new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, StrikePanelGrid.PanelsPerPatternWidth));
+                                                    null, TestRecipeElementList, TestRecipeElementList);
             TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null, null);
             TestRegionModel = new RegionModel(-All.RegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
             TestFloor = new FloorModel(-All.FloorIDs.Minimum, "8 Test Floor", "Test", "Test", addsToRoom: new List<ModelTag> { TestTag });
