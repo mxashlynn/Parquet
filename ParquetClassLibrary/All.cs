@@ -333,8 +333,6 @@ namespace Parquet
         /// </summary>
         public static IDictionary<ModelID, RegionStatus> RegionStatuses { get; private set; }
 
-        // TODO [Engine] Do we need a dictionary of current Rooms here?
-
         /// <summary>
         /// An optional collection of all <see cref="ScriptStatus"/>es currently running.
         /// Each corresponds to a <see cref="ScriptModel"/> in <see cref="Scripts"/>.
