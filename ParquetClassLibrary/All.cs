@@ -276,12 +276,60 @@ namespace Parquet
         public static ModelCollection<ItemModel> Items { get; private set; }
         #endregion
 
-        #region Other Collections
+        #region Status Collections
+        // TODO [Engine] Do we want to store being subtypes in separate dedicated dictionaries, or should they be rolled into a single being dictionary?
         /// <summary>
-        /// A collection of all defined <see cref="PronounGroup"/>s.
-        /// This collection is the source of truth about pronouns for the rest of the library.
+        /// An optional collection of all <see cref="CharacterStatus"/>es currently tracked.
+        /// Each corresponds to a <see cref="CharacterModel"/> in <see cref="Characters"/>.
+        /// This collection is mutable during play.
         /// </summary>
-        public static IReadOnlyCollection<PronounGroup> PronounGroups { get; private set; }
+        public static IDictionary<ModelID, CharacterStatus> CharacterStatuses { get; private set; }
+
+        // TODO [Engine] Do we want to store being subtypes in separate dedicated dictionaries, or should they be rolled into a single being dictionary?
+        /// <summary>
+        /// An optional collection of all <see cref="CritterStatus"/>es currently tracked.
+        /// Each corresponds to a <see cref="CritterModel"/> in <see cref="Critters"/>.
+        /// This collection is mutable during play.
+        /// </summary>
+        public static IDictionary<ModelID, CritterStatus> CritterStatuses { get; private set; }
+
+        // TODO [Engine] Do we want to store parquet subtypes in separate dedicated dictionaries, or should they be rolled into a single parquet dictionary?
+        /// <summary>
+        /// An optional collection of all <see cref="BlockStatus"/>es currently tracked.
+        /// Each corresponds to a <see cref="BlockModel"/> in <see cref="Blocks"/>.
+        /// This collection is mutable during play.
+        /// </summary>
+        public static IDictionary<ModelID, BlockStatus> BlockStatuses { get; private set; }
+
+        // TODO [Engine] Do we want to store parquet subtypes in separate dedicated dictionaries, or should they be rolled into a single parquet dictionary?
+        /// <summary>
+        /// An optional collection of all <see cref="FloorStatus"/>es currently tracked.
+        /// Each corresponds to a <see cref="FloorModel"/> in <see cref="Floors"/>.
+        /// This collection is mutable during play.
+        /// </summary>
+        public static IDictionary<ModelID, FloorStatus> FloorStatuses { get; private set; }
+
+        // TODO [Engine] Do we want to store parquet subtypes in separate dedicated dictionaries, or should they be rolled into a single parquet dictionary?
+        /// <summary>
+        /// An optional collection of all <see cref="FurnishingStatus"/>es currently tracked.
+        /// Each corresponds to a <see cref="FurnishingModel"/> in <see cref="Furnishings"/>.
+        /// This collection is mutable during play.
+        /// </summary>
+        public static IDictionary<ModelID, FurnishingStatus> FurnishingStatuses { get; private set; }
+
+        /// <summary>
+        /// An optional collection of all <see cref="GameStatus"/>es currently in play.
+        /// Each corresponds to a <see cref="GameModel"/> in <see cref="Games"/>.
+        /// This collection is mutable during play.
+        /// </summary>
+        public static IDictionary<ModelID, GameStatus> GameStatuses { get; private set; }
+
+        /// <summary>
+        /// An optional collection of all <see cref="InteractionStatus"/>es currently tracked.
+        /// Each corresponds to a <see cref="InteractionModel"/> in <see cref="Interactions"/>.
+        /// This collection is mutable during play.
+        /// </summary>
+        public static IDictionary<ModelID, InteractionStatus> InteractionStatuses { get; private set; }
 
         /// <summary>
         /// An optional collection of all <see cref="RegionStatus"/>es currently generated.
@@ -289,6 +337,23 @@ namespace Parquet
         /// This collection is mutable during play.
         /// </summary>
         public static IDictionary<ModelID, RegionStatus> RegionStatuses { get; private set; }
+
+        // TODO [Engine] Do we need a dictionary of current Rooms here?
+
+        /// <summary>
+        /// An optional collection of all <see cref="ScriptStatus"/>es currently running.
+        /// Each corresponds to a <see cref="ScriptModel"/> in <see cref="Scripts"/>.
+        /// This collection is mutable during play.
+        /// </summary>
+        public static IDictionary<ModelID, ScriptStatus> ScriptStatuses { get; private set; }
+        #endregion
+
+        #region Other Collections
+        /// <summary>
+        /// A collection of all defined <see cref="PronounGroup"/>s.
+        /// This collection is the source of truth about pronouns for the rest of the library.
+        /// </summary>
+        public static IReadOnlyCollection<PronounGroup> PronounGroups { get; private set; }
         #endregion
 
         #region Initialization
