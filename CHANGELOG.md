@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/).
 #### Removes
 - ...
 #### Changes
-- ...
+- Simplifies the signature for creating/serializing CraftingRecipes.
 
 ## [0.4.0] - 2021-02-23
 ### Pre-Alpha 3 API Revision
