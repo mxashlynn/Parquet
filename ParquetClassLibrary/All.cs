@@ -277,7 +277,6 @@ namespace Parquet
         #endregion
 
         #region Status Collections
-        // TODO [Engine] Do we want to store being subtypes in separate dedicated dictionaries, or should they be rolled into a single being dictionary?
         /// <summary>
         /// An optional collection of all <see cref="CharacterStatus"/>es currently tracked.
         /// Each corresponds to a <see cref="CharacterModel"/> in <see cref="Characters"/>.
@@ -285,7 +284,6 @@ namespace Parquet
         /// </summary>
         public static IDictionary<ModelID, CharacterStatus> CharacterStatuses { get; private set; }
 
-        // TODO [Engine] Do we want to store being subtypes in separate dedicated dictionaries, or should they be rolled into a single being dictionary?
         /// <summary>
         /// An optional collection of all <see cref="CritterStatus"/>es currently tracked.
         /// Each corresponds to a <see cref="CritterModel"/> in <see cref="Critters"/>.
@@ -293,7 +291,6 @@ namespace Parquet
         /// </summary>
         public static IDictionary<ModelID, CritterStatus> CritterStatuses { get; private set; }
 
-        // TODO [Engine] Do we want to store parquet subtypes in separate dedicated dictionaries, or should they be rolled into a single parquet dictionary?
         /// <summary>
         /// An optional collection of all <see cref="BlockStatus"/>es currently tracked.
         /// Each corresponds to a <see cref="BlockModel"/> in <see cref="Blocks"/>.
@@ -301,7 +298,6 @@ namespace Parquet
         /// </summary>
         public static IDictionary<ModelID, BlockStatus> BlockStatuses { get; private set; }
 
-        // TODO [Engine] Do we want to store parquet subtypes in separate dedicated dictionaries, or should they be rolled into a single parquet dictionary?
         /// <summary>
         /// An optional collection of all <see cref="FloorStatus"/>es currently tracked.
         /// Each corresponds to a <see cref="FloorModel"/> in <see cref="Floors"/>.
@@ -309,7 +305,6 @@ namespace Parquet
         /// </summary>
         public static IDictionary<ModelID, FloorStatus> FloorStatuses { get; private set; }
 
-        // TODO [Engine] Do we want to store parquet subtypes in separate dedicated dictionaries, or should they be rolled into a single parquet dictionary?
         /// <summary>
         /// An optional collection of all <see cref="FurnishingStatus"/>es currently tracked.
         /// Each corresponds to a <see cref="FurnishingModel"/> in <see cref="Furnishings"/>.
