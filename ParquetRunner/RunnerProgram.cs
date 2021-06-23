@@ -209,9 +209,9 @@ namespace ParquetRunner
             Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
             Scripts = new List<ScriptModel> { TestScript };
 
-            All.InitializeCollections(PronounGroups, Games, Floors, Blocks, Furnishings, Collectibles, Critters, Characters,
-                                      BiomeRecipes, CraftingRecipes, RoomRecipes, Regions, RegionStatuses, Scripts, Interactions,
-                                      Items);
+            All.InitializeModelCollections(PronounGroups, Games, Floors, Blocks, Furnishings, Collectibles, Critters, Characters,
+                                           BiomeRecipes, CraftingRecipes, RoomRecipes, Regions, RegionStatuses, Scripts, Interactions,
+                                           Items);
             #endregion
         }
     }
@@ -230,7 +230,7 @@ namespace ParquetRunner
             Logger.Log(LogLevel.Info, LibraryState.IsDebugMode ? "Debug Mode" : "Release Mode");
             LibraryState.IsPlayMode = true;
 
-            Logger.Log(LogLevel.Info, All.LoadFromCSVs() ? "Loaded." : "Failed to load!");
+            Logger.Log(LogLevel.Info, All.TryLoadModels() ? "Loaded." : "Failed to load!");
 
             var game = new GameModel(All.GameIDs.Minimum + 1, "Sample Game", "", "", null, false, "", -1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
             var episode = new GameModel(All.GameIDs.Minimum + 2, "Sample Episode", "", "", null, true, "In Which A Library Is Tested", 1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
@@ -238,7 +238,7 @@ namespace ParquetRunner
             Logger.Log(LogLevel.Info, episode);
             Logger.Log(LogLevel.Info, $"Item range = {All.ItemIDs}");
 
-            Logger.Log(LogLevel.Info, All.SaveToCSVs() ? "Saved." : "Failed to save!");
+            Logger.Log(LogLevel.Info, All.TrySaveModels() ? "Saved." : "Failed to save!");
         }
     }
 }

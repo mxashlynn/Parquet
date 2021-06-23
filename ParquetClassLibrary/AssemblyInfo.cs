@@ -12,6 +12,10 @@ using System.Runtime.InteropServices;
 // Allow unit tests to access classes and members with internal accessibility.
 [assembly: InternalsVisibleTo("ParquetUnitTests")]
 
+// TODO [Tests] Once unit tests are reliable, this should probably be removed and test content in Runner slimmed down.
+// Allow smoke test to access classes and members with internal accessibility.
+[assembly: InternalsVisibleTo("ParquetRunner")]
+
 namespace Parquet
 {
     /// <summary>

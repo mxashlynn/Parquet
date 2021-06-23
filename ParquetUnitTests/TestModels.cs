@@ -208,9 +208,9 @@ namespace ParquetUnitTests
             Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
             Scripts = new List<ScriptModel> { TestScript };
 
-            All.InitializeCollections(PronounGroups, Games, Floors, Blocks, Furnishings, Collectibles, Critters, Characters,
-                                      BiomeRecipes, CraftingRecipes, RoomRecipes, Regions, RegionStatuses, Scripts, Interactions,
-                                      Items);
+            All.InitializeModelCollections(PronounGroups, Games, Floors, Blocks, Furnishings, Collectibles, Critters, Characters,
+                                           BiomeRecipes, CraftingRecipes, RoomRecipes, Regions, RegionStatuses, Scripts, Interactions,
+                                           Items);
             #endregion
         }
     }

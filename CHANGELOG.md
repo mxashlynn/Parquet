@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/).
 - ...
 #### Changes
 - Simplifies the signature for creating/serializing CraftingRecipes.
+- Renames All.LoadFromCSVs to All.TryLoadModels.
+- Renames All.SaveToCSVs to All.TrySaveModels.
 
 ## [0.4.0] - 2021-02-23
 ### Pre-Alpha 3 API Revision

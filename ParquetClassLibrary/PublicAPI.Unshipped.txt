@@ -932,7 +932,6 @@ static Parquet.All.InitializeCollections(System.Collections.Generic.IEnumerable<
 static Parquet.All.Interactions.get -> Parquet.ModelCollection<Parquet.Scripts.InteractionModel>
 static Parquet.All.InteractionStatuses.get -> System.Collections.Generic.IDictionary<Parquet.ModelID, Parquet.Scripts.InteractionStatus>
 static Parquet.All.Items.get -> Parquet.ModelCollection<Parquet.Items.ItemModel>
-static Parquet.All.LoadFromCSVs() -> bool
 static Parquet.All.Parquets.get -> Parquet.ModelCollection<Parquet.Parquets.ParquetModel>
 static Parquet.All.ProjectDirectory.get -> string
 static Parquet.All.ProjectDirectory.set -> void
@@ -940,9 +939,10 @@ static Parquet.All.PronounGroups.get -> System.Collections.Generic.IReadOnlyColl
 static Parquet.All.Regions.get -> Parquet.ModelCollection<Parquet.Regions.RegionModel>
 static Parquet.All.RegionStatuses.get -> System.Collections.Generic.IDictionary<Parquet.ModelID, Parquet.Regions.RegionStatus>
 static Parquet.All.RoomRecipes.get -> Parquet.ModelCollection<Parquet.Rooms.RoomRecipe>
-static Parquet.All.SaveToCSVs() -> bool
 static Parquet.All.Scripts.get -> Parquet.ModelCollection<Parquet.Scripts.ScriptModel>
 static Parquet.All.ScriptStatuses.get -> System.Collections.Generic.IDictionary<Parquet.ModelID, Parquet.Scripts.ScriptStatus>
+static Parquet.All.TryLoadModels() -> bool
+static Parquet.All.TrySaveModels() -> bool
 static Parquet.Beings.CharacterModel.Unused.get -> Parquet.Beings.CharacterModel
 static Parquet.Beings.CharacterStatus.operator !=(Parquet.Beings.CharacterStatus status1, Parquet.Beings.CharacterStatus status2) -> bool
 static Parquet.Beings.CharacterStatus.operator ==(Parquet.Beings.CharacterStatus status1, Parquet.Beings.CharacterStatus status2) -> bool
