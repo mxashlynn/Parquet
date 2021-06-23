@@ -292,27 +292,6 @@ namespace Parquet
         public static IDictionary<ModelID, CritterStatus> CritterStatuses { get; private set; }
 
         /// <summary>
-        /// An optional collection of all <see cref="BlockStatus"/>es currently tracked.
-        /// Each corresponds to a <see cref="BlockModel"/> in <see cref="Blocks"/>.
-        /// This collection is mutable during play.
-        /// </summary>
-        public static IDictionary<ModelID, BlockStatus> BlockStatuses { get; private set; }
-
-        /// <summary>
-        /// An optional collection of all <see cref="FloorStatus"/>es currently tracked.
-        /// Each corresponds to a <see cref="FloorModel"/> in <see cref="Floors"/>.
-        /// This collection is mutable during play.
-        /// </summary>
-        public static IDictionary<ModelID, FloorStatus> FloorStatuses { get; private set; }
-
-        /// <summary>
-        /// An optional collection of all <see cref="FurnishingStatus"/>es currently tracked.
-        /// Each corresponds to a <see cref="FurnishingModel"/> in <see cref="Furnishings"/>.
-        /// This collection is mutable during play.
-        /// </summary>
-        public static IDictionary<ModelID, FurnishingStatus> FurnishingStatuses { get; private set; }
-
-        /// <summary>
         /// An optional collection of all <see cref="GameStatus"/>es currently in play.
         /// Each corresponds to a <see cref="GameModel"/> in <see cref="Games"/>.
         /// This collection is mutable during play.
@@ -625,18 +604,12 @@ namespace Parquet
         /// </summary>
         /// <param name="characterStatuses">All characters currently tracked in the game.</param>
         /// <param name="critterStatuses">All critters currently tracked in the game.</param>
-        /// <param name="blockStatuses">All blocks currently tracked in the game.</param>
-        /// <param name="floorStatuses">All floors currently tracked in the game.</param>
-        /// <param name="furnishingStatuses">All furnishings currently tracked in the game.</param>
         /// <param name="gameStatuses">All games currently tracked in the game.</param>
         /// <param name="interactionStatuses">All interactions currently tracked in the game.</param>
         /// <param name="regionStatuses">All maps that have already been generated in the game.</param>
         /// <param name="scriptStatuses">All scripts that are currently running in the game.</param>
         internal static bool TryInitializeStatusCollections(IReadOnlyDictionary<ModelID, CharacterStatus> characterStatuses,
                                                             IReadOnlyDictionary<ModelID, CritterStatus> critterStatuses,
-                                                            IReadOnlyDictionary<ModelID, BlockStatus> blockStatuses,
-                                                            IReadOnlyDictionary<ModelID, FloorStatus> floorStatuses,
-                                                            IReadOnlyDictionary<ModelID, FurnishingStatus> furnishingStatuses,
                                                             IReadOnlyDictionary<ModelID, GameStatus> gameStatuses,
                                                             IReadOnlyDictionary<ModelID, InteractionStatus> interactionStatuses,
                                                             IReadOnlyDictionary<ModelID, RegionStatus> regionStatuses,
@@ -648,9 +621,6 @@ namespace Parquet
             {
                 success = CharacterStatuses.TryReplaceWith(characterStatuses)
                     & CritterStatuses.TryReplaceWith(critterStatuses)
-                    & BlockStatuses.TryReplaceWith(blockStatuses)
-                    & FloorStatuses.TryReplaceWith(floorStatuses)
-                    & FurnishingStatuses.TryReplaceWith(furnishingStatuses)
                     & GameStatuses.TryReplaceWith(gameStatuses)
                     & InteractionStatuses.TryReplaceWith(interactionStatuses)
                     & RegionStatuses.TryReplaceWith(regionStatuses)
@@ -767,18 +737,14 @@ namespace Parquet
                 #region Read Statuses
                 var characterStatuses = CharacterStatus.GetRecords();
                 var critterStatuses = CritterStatus.GetRecords();
-                var blockStatuses = BlockStatus.GetRecords();
-                var floorStatuses = FloorStatus.GetRecords();
-                var furnishingStatuses = FurnishingStatus.GetRecords();
                 var gameStatuses = GameStatus.GetRecords();
                 var interactionStatuses = InteractionStatus.GetRecords();
                 var regionStatuses = RegionStatus.GetRecords();
                 var scriptStatuses = ScriptStatus.GetRecords();
                 #endregion
 
-                return TryInitializeStatusCollections(characterStatuses, critterStatuses,
-                                                      blockStatuses, floorStatuses, furnishingStatuses,
-                                                      gameStatuses, interactionStatuses, regionStatuses, scriptStatuses);
+                return TryInitializeStatusCollections(characterStatuses, critterStatuses, gameStatuses, interactionStatuses,
+                                                      regionStatuses, scriptStatuses);
             }
             catch (Exception loadException)
             {
@@ -798,9 +764,6 @@ namespace Parquet
                 #region Write Status
                  CharacterStatus.PutRecords(CharacterStatuses);
                 CritterStatus.PutRecords(CritterStatuses);
-                BlockStatus.PutRecords(BlockStatuses);
-                FloorStatus.PutRecords(FloorStatuses);
-                FurnishingStatus.PutRecords(FurnishingStatuses);
                 GameStatus.PutRecords(GameStatuses);
                 InteractionStatus.PutRecords(InteractionStatuses);
                 RegionStatus.PutRecords(RegionStatuses);
@@ -850,9 +813,6 @@ namespace Parquet
                 ((HashSet<PronounGroup>)PronounGroups)?.Clear();
                 CharacterStatuses?.Clear();
                 CritterStatuses?.Clear();
-                BlockStatuses?.Clear();
-                FloorStatuses?.Clear();
-                FurnishingStatuses?.Clear();
                 GameStatuses?.Clear();
                 InteractionStatuses?.Clear();
                 RegionStatuses?.Clear();
