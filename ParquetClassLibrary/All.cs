@@ -733,14 +733,16 @@ namespace Parquet
             try
             {
                 #region Read Statuses
-                var characterStatuses = CharacterStatus.GetRecords();
-                var gameStatuses = GameStatus.GetRecords();
-                var interactionStatuses = InteractionStatus.GetRecords();
+                //var characterStatuses = CharacterStatus.GetRecords();
+                //var gameStatuses = GameStatus.GetRecords();
+                //var interactionStatuses = InteractionStatus.GetRecords();
                 var regionStatuses = RegionStatus.GetRecords();
-                var scriptStatuses = ScriptStatus.GetRecords();
+                //var scriptStatuses = ScriptStatus.GetRecords();
                 #endregion
 
-                return TryInitializeStatusCollections(characterStatuses, gameStatuses, interactionStatuses, regionStatuses, scriptStatuses);
+                // TODO [Map] Fix this:
+                return TryInitializeStatusCollections(null, null, null, regionStatuses, null);
+                //return TryInitializeStatusCollections(characterStatuses, gameStatuses, interactionStatuses, regionStatuses, scriptStatuses);
             }
             catch (Exception loadException)
             {
@@ -758,11 +760,12 @@ namespace Parquet
             try
             {
                 #region Write Status
-                CharacterStatus.PutRecords(CharacterStatuses);
-                GameStatus.PutRecords(GameStatuses);
-                InteractionStatus.PutRecords(InteractionStatuses);
+                // TODO [Map] Fix this:
+                //CharacterStatus.PutRecords(CharacterStatuses);
+                //GameStatus.PutRecords(GameStatuses);
+                //InteractionStatus.PutRecords(InteractionStatuses);
                 RegionStatus.PutRecords(RegionStatuses);
-                ScriptStatus.PutRecords(ScriptStatuses);
+                //ScriptStatus.PutRecords(ScriptStatuses);
                 #endregion
 
                 return true;

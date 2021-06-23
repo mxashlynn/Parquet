@@ -241,6 +241,9 @@ namespace ParquetRunner
             Logger.Log(LogLevel.Info, episode);
             Logger.Log(LogLevel.Info, $"Item range = {All.ItemIDs}");
 
+            var regionStatus = new RegionStatus(All.Regions.GetOrNull<RegionModel>(All.RegionIDs.Minimum));
+            All.RegionStatuses[All.RegionIDs.Minimum] = regionStatus;
+
             Logger.Log(LogLevel.Info, All.TrySaveModels() ? "Saved." : "Failed to save!");
         }
     }
