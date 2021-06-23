@@ -22,6 +22,9 @@ namespace Parquet.Parquets
 
         /// <summary>The <see cref="BlockStatus"/> contained in this <see cref="ParquetStatusPack"/>.</summary>
         public BlockStatus CurrentBlockStatus { get; set; }
+
+        /// <summary>The <see cref="FurnishingStatus"/> contained in this <see cref="ParquetStatusPack"/>.</summary>
+        public FurnishingStatus CurrentFurnishingStatus { get; set; }
         #endregion
 
         #region Initialization
@@ -30,7 +33,7 @@ namespace Parquet.Parquets
         /// </summary>
         /// <remarks>This is primarily useful for serialization.</remarks>
         public ParquetStatusPack()
-            : this(FloorStatus.Default, BlockStatus.Default)
+            : this(FloorStatus.Default, BlockStatus.Default, FurnishingStatus.Default)
         { }
 
         /// <summary>
@@ -38,10 +41,12 @@ namespace Parquet.Parquets
         /// </summary>
         /// <param name="floorStatus">The status of the tracked floor-layer parquet.</param>
         /// <param name="blockStatus">The status of the tracked block-layer parquet.</param>
-        public ParquetStatusPack(FloorStatus floorStatus = null, BlockStatus blockStatus = null)
+        /// <param name="furnishingStatus">The status of the tracked furnishing-layer parquet.</param>
+        public ParquetStatusPack(FloorStatus floorStatus = null, BlockStatus blockStatus = null, FurnishingStatus furnishingStatus = null)
         {
             CurrentFloorStatus = floorStatus ?? FloorStatus.Default;
             CurrentBlockStatus = blockStatus ?? BlockStatus.Default;
+            CurrentFurnishingStatus = furnishingStatus ?? FurnishingStatus.Default;
         }
 
         /// <summary>
@@ -52,12 +57,11 @@ namespace Parquet.Parquets
         public ParquetStatusPack(ParquetModelPack parquetModelPack)
         {
             Precondition.IsNotNull(parquetModelPack);
-            var nonNullParquetModelPack = parquetModelPack is null
-                ? ParquetModelPack.Empty
-                : parquetModelPack;
+            var nonNullParquetModelPack = parquetModelPack ?? ParquetModelPack.Empty;
 
             CurrentFloorStatus = new FloorStatus(nonNullParquetModelPack.FloorID);
             CurrentBlockStatus = new BlockStatus(nonNullParquetModelPack.BlockID);
+            CurrentFurnishingStatus = new FurnishingStatus(nonNullParquetModelPack.FurnishingID);
         }
         #endregion
 
@@ -69,7 +73,7 @@ namespace Parquet.Parquets
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
         /// </returns>
         public override int GetHashCode()
-            => (CurrentFloorStatus, CurrentBlockStatus).GetHashCode();
+            => (CurrentFloorStatus, CurrentBlockStatus, CurrentFurnishingStatus).GetHashCode();
 
         /// <summary>
         /// Determines whether the specified <see cref="ParquetStatusPack"/> is equal to the current <see cref="ParquetStatusPack"/>.
@@ -79,7 +83,8 @@ namespace Parquet.Parquets
         public override bool Equals<T>(T pack)
             => pack is ParquetStatusPack statusPack
             && CurrentFloorStatus == statusPack.CurrentFloorStatus
-            && CurrentBlockStatus == statusPack.CurrentBlockStatus;
+            && CurrentBlockStatus == statusPack.CurrentBlockStatus
+            && CurrentFurnishingStatus == statusPack.CurrentFurnishingStatus;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetStatusPack"/>.
@@ -123,7 +128,8 @@ namespace Parquet.Parquets
         public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
             => value is ParquetStatusPack pack
                 ? $"{pack.CurrentFloorStatus.ConvertToString(pack.CurrentFloorStatus, row, memberMapData)}{Delimiters.PackDelimiter}" +
-                  $"{pack.CurrentBlockStatus.ConvertToString(pack.CurrentBlockStatus, row, memberMapData)}"
+                  $"{pack.CurrentBlockStatus.ConvertToString(pack.CurrentFloorStatus, row, memberMapData)}{Delimiters.PackDelimiter}" +
+                  $"{pack.CurrentFurnishingStatus.ConvertToString(pack.CurrentBlockStatus, row, memberMapData)}"
                 : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(ParquetStatusPack), nameof(Default));
 
         /// <summary>
@@ -145,8 +151,9 @@ namespace Parquet.Parquets
 
             var parsedFloorStatus = (FloorStatus)FloorStatus.ConverterFactory.ConvertFromString(parameterText[0], row, memberMapData);
             var parsedBlockStatus = (BlockStatus)BlockStatus.ConverterFactory.ConvertFromString(parameterText[1], row, memberMapData);
+            var parsedFurnishingtatus = (FurnishingStatus)FurnishingStatus.ConverterFactory.ConvertFromString(parameterText[2], row, memberMapData);
 
-            return new ParquetStatusPack(parsedFloorStatus, parsedBlockStatus);
+            return new ParquetStatusPack(parsedFloorStatus, parsedBlockStatus, parsedFurnishingtatus);
         }
         #endregion
 
@@ -157,7 +164,8 @@ namespace Parquet.Parquets
         /// <returns>A new instance with the same status as the current instance.</returns>
         public override ParquetStatusPack DeepClone()
             => new((FloorStatus)CurrentFloorStatus.DeepClone(),
-                   (BlockStatus)CurrentBlockStatus.DeepClone());
+                   (BlockStatus)CurrentBlockStatus.DeepClone(),
+                   (FurnishingStatus)CurrentFurnishingStatus.DeepClone());
 
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.
@@ -173,7 +181,7 @@ namespace Parquet.Parquets
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"[{CurrentFloorStatus} {CurrentBlockStatus}]";
+            => $"[{CurrentFloorStatus} {CurrentBlockStatus} {CurrentFurnishingStatus}]";
         #endregion
     }
 }

@@ -676,8 +676,10 @@ Parquet.Parquets.ParquetStatusPack.CurrentBlockStatus.get -> Parquet.Parquets.Bl
 Parquet.Parquets.ParquetStatusPack.CurrentBlockStatus.set -> void
 Parquet.Parquets.ParquetStatusPack.CurrentFloorStatus.get -> Parquet.Parquets.FloorStatus
 Parquet.Parquets.ParquetStatusPack.CurrentFloorStatus.set -> void
+Parquet.Parquets.ParquetStatusPack.CurrentFurnishingStatus.get -> Parquet.Parquets.FurnishingStatus
+Parquet.Parquets.ParquetStatusPack.CurrentFurnishingStatus.set -> void
 Parquet.Parquets.ParquetStatusPack.ParquetStatusPack() -> void
-Parquet.Parquets.ParquetStatusPack.ParquetStatusPack(Parquet.Parquets.FloorStatus floorStatus = null, Parquet.Parquets.BlockStatus blockStatus = null) -> void
+Parquet.Parquets.ParquetStatusPack.ParquetStatusPack(Parquet.Parquets.FloorStatus floorStatus = null, Parquet.Parquets.BlockStatus blockStatus = null, Parquet.Parquets.FurnishingStatus furnishingStatus = null) -> void
 Parquet.Parquets.ParquetStatusPack.ParquetStatusPack(Parquet.Parquets.ParquetModelPack parquetModelPack) -> void
 Parquet.Parquets.ParquetStatusPackGrid
 Parquet.Parquets.ParquetStatusPackGrid.Columns.get -> int
