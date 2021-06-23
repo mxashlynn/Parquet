@@ -14,7 +14,7 @@ namespace Parquet
         /// <param name="dictionaryToAlter">The <see cref="IDictionary{K, V}"/> being altered.</param>
         /// <param name="keyValuePairs">The new content for the <see cref="IDictionary{K, V}"/>.</param>
         /// <returns><c>true</c> if every add succeeded; <c>false</c> otherwise.</returns>
-        public static bool TryReplaceWith<TKey, TValue>(this IDictionary<TKey, TValue> dictionaryToAlter, IDictionary<TKey, TValue> keyValuePairs)
+        public static bool TryReplaceWith<TKey, TValue>(this IDictionary<TKey, TValue> dictionaryToAlter, IReadOnlyDictionary<TKey, TValue> keyValuePairs)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace Parquet
         /// <param name="dictionaryToAlter">The <see cref="IDictionary{K, V}"/> being altered.</param>
         /// <param name="keyValuePairs">The new content for the <see cref="IDictionary{K, V}"/>.</param>
         /// <returns><c>true</c> if every add succeeded; <c>false</c> otherwise.</returns>
-        internal static void ReplaceWith<TKey, TValue>(this IDictionary<TKey, TValue> dictionaryToAlter, IDictionary<TKey, TValue> keyValuePairs)
+        internal static void ReplaceWith<TKey, TValue>(this IDictionary<TKey, TValue> dictionaryToAlter, IReadOnlyDictionary<TKey, TValue> keyValuePairs)
         {
             dictionaryToAlter.Clear();
             foreach (KeyValuePair<TKey, TValue> kvp in keyValuePairs ?? new Dictionary<TKey, TValue>())

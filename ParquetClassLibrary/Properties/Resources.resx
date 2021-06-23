@@ -185,8 +185,8 @@
     <value>Invalid position: {0} is not within {1}.</value>
     <comment>Error string.</comment>
   </data>
-  <data name="ErrorLoading" xml:space="preserve">
-    <value>An error occurred while trying to load.</value>
+  <data name="ErrorLoadingModels" xml:space="preserve">
+    <value>An error occurred while trying to load game models.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorModelNotFound" xml:space="preserve">
@@ -233,8 +233,12 @@
     <value>{0} is {1} but must be less than or equal to {2}.</value>
     <comment>Error string.</comment>
   </data>
-  <data name="ErrorSaving" xml:space="preserve">
-    <value>An error occurred while trying to save.</value>
+  <data name="ErrorPrematureLoad" xml:space="preserve">
+    <value>Attempted to load game data before Parquet was initialized.</value>
+    <comment>Error string.</comment>
+  </data>
+  <data name="ErrorSavingModels" xml:space="preserve">
+    <value>An error occurred while trying to save game models.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorUndefinedDirection" xml:space="preserve">

@@ -214,11 +214,11 @@ namespace Parquet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred while trying to load..
+        ///   Looks up a localized string similar to An error occurred while trying to load game models..
         /// </summary>
-        internal static string ErrorLoading {
+        internal static string ErrorLoadingModels {
             get {
-                return ResourceManager.GetString("ErrorLoading", resourceCulture);
+                return ResourceManager.GetString("ErrorLoadingModels", resourceCulture);
             }
         }
         
@@ -322,11 +322,20 @@ namespace Parquet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred while trying to save..
+        ///   Looks up a localized string similar to Attempted to load game data before Parquet was initialized..
         /// </summary>
-        internal static string ErrorSaving {
+        internal static string ErrorPrematureLoad {
             get {
-                return ResourceManager.GetString("ErrorSaving", resourceCulture);
+                return ResourceManager.GetString("ErrorPrematureLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred while trying to save game models..
+        /// </summary>
+        internal static string ErrorSavingModels {
+            get {
+                return ResourceManager.GetString("ErrorSavingModels", resourceCulture);
             }
         }
         

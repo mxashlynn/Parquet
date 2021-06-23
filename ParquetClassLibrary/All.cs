@@ -546,7 +546,6 @@ namespace Parquet
         /// <param name="games">All games or episodes to be used in the game.</param>
         /// <param name="interactions">All interactions to be used in the game.</param>
         /// <param name="regions">All region metadata to be used in the game.</param>
-        /// <param name="regionStatuses">All maps that have already been generated in the game.</param>
         /// <param name="floors">All floors to be used in the game.</param>
         /// <param name="blocks">All blocks to be used in the game.</param>
         /// <param name="furnishings">All furnishings to be used in the game.</param>
@@ -633,30 +632,37 @@ namespace Parquet
         /// <param name="interactionStatuses">All interactions currently tracked in the game.</param>
         /// <param name="regionStatuses">All maps that have already been generated in the game.</param>
         /// <param name="scriptStatuses">All scripts that are currently running in the game.</param>
-        internal static void InitializeStatusCollections(IDictionary<ModelID, CharacterStatus> characterStatuses,
-                                                         IDictionary<ModelID, CritterStatus> critterStatuses,
-                                                         IDictionary<ModelID, BlockStatus> blockStatuses,
-                                                         IDictionary<ModelID, FloorStatus> floorStatuses,
-                                                         IDictionary<ModelID, FurnishingStatus> furnishingStatuses,
-                                                         IDictionary<ModelID, GameStatus> gameStatuses,
-                                                         IDictionary<ModelID, InteractionStatus> interactionStatuses,
-                                                         IDictionary<ModelID, RegionStatus> regionStatuses,
-                                                         IDictionary<ModelID, ScriptStatus> scriptStatuses)
+        internal static bool TryInitializeStatusCollections(IReadOnlyDictionary<ModelID, CharacterStatus> characterStatuses,
+                                                            IReadOnlyDictionary<ModelID, CritterStatus> critterStatuses,
+                                                            IReadOnlyDictionary<ModelID, BlockStatus> blockStatuses,
+                                                            IReadOnlyDictionary<ModelID, FloorStatus> floorStatuses,
+                                                            IReadOnlyDictionary<ModelID, FurnishingStatus> furnishingStatuses,
+                                                            IReadOnlyDictionary<ModelID, GameStatus> gameStatuses,
+                                                            IReadOnlyDictionary<ModelID, InteractionStatus> interactionStatuses,
+                                                            IReadOnlyDictionary<ModelID, RegionStatus> regionStatuses,
+                                                            IReadOnlyDictionary<ModelID, ScriptStatus> scriptStatuses)
         {
-            // TODO [MAPS] This should be part of the load method.
-            //#region Read Maps
-            //var maps = RegionStatus.GetRecords();
-            //#endregion
+            bool success;
 
-            CharacterStatuses.TryReplaceWith(characterStatuses);
-            CritterStatuses?.TryReplaceWith(critterStatuses);
-            BlockStatuses?.TryReplaceWith(blockStatuses);
-            FloorStatuses?.TryReplaceWith(floorStatuses);
-            FurnishingStatuses?.TryReplaceWith(furnishingStatuses);
-            GameStatuses?.TryReplaceWith(gameStatuses);
-            InteractionStatuses?.TryReplaceWith(interactionStatuses);
-            RegionStatuses?.TryReplaceWith(regionStatuses);
-            ScriptStatuses?.TryReplaceWith(scriptStatuses);
+            try
+            {
+                success = CharacterStatuses.TryReplaceWith(characterStatuses)
+                    & CritterStatuses.TryReplaceWith(critterStatuses)
+                    & BlockStatuses.TryReplaceWith(blockStatuses)
+                    & FloorStatuses.TryReplaceWith(floorStatuses)
+                    & FurnishingStatuses.TryReplaceWith(furnishingStatuses)
+                    & GameStatuses.TryReplaceWith(gameStatuses)
+                    & InteractionStatuses.TryReplaceWith(interactionStatuses)
+                    & RegionStatuses.TryReplaceWith(regionStatuses)
+                    & ScriptStatuses.TryReplaceWith(scriptStatuses);
+            }
+            catch (NullReferenceException)
+            {
+                Logger.Log(LogLevel.Error, Resources.ErrorPrematureLoad);
+                success = false;
+            }
+
+            return success;
         }
         #endregion
 
@@ -700,7 +706,7 @@ namespace Parquet
             }
             catch (Exception loadException)
             {
-                Logger.Log(LogLevel.Error, Resources.ErrorLoading, loadException);
+                Logger.Log(LogLevel.Error, Resources.ErrorLoadingModels, loadException);
                 return false;
             }
         }
@@ -739,14 +745,73 @@ namespace Parquet
 
                 #region Write Other Collections
                 PronounGroup.PutRecords(PronounGroups);
-                RegionStatus.PutRecords(RegionStatuses);
                 #endregion
 
                 return true;
             }
             catch (Exception saveException)
             {
-                Logger.Log(LogLevel.Error, Resources.ErrorSaving, saveException);
+                Logger.Log(LogLevel.Error, Resources.ErrorSavingModels, saveException);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Initializes the game state based on values in the CSV files at the given location.
+        /// </summary>
+        /// <returns><c>true</c> if no exceptions were caught, <c>false</c> otherwise.</returns>
+        public static bool TryLoadStatuses()
+        {
+            try
+            {
+                #region Read Statuses
+                var characterStatuses = CharacterStatus.GetRecords();
+                var critterStatuses = CritterStatus.GetRecords();
+                var blockStatuses = BlockStatus.GetRecords();
+                var floorStatuses = FloorStatus.GetRecords();
+                var furnishingStatuses = FurnishingStatus.GetRecords();
+                var gameStatuses = GameStatus.GetRecords();
+                var interactionStatuses = InteractionStatus.GetRecords();
+                var regionStatuses = RegionStatus.GetRecords();
+                var scriptStatuses = ScriptStatus.GetRecords();
+                #endregion
+
+                return TryInitializeStatusCollections(characterStatuses, critterStatuses,
+                                                      blockStatuses, floorStatuses, furnishingStatuses,
+                                                      gameStatuses, interactionStatuses, regionStatuses, scriptStatuses);
+            }
+            catch (Exception loadException)
+            {
+                Logger.Log(LogLevel.Error, Resources.ErrorLoadingModels, loadException);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Stores the current game state to CSV files at the given location.
+        /// </summary>
+        /// <returns><c>true</c> if no exceptions were caught, <c>false</c> otherwise.</returns>
+        public static bool TrySaveStatuses()
+        {
+            try
+            {
+                #region Write Status
+                 CharacterStatus.PutRecords(CharacterStatuses);
+                CritterStatus.PutRecords(CritterStatuses);
+                BlockStatus.PutRecords(BlockStatuses);
+                FloorStatus.PutRecords(FloorStatuses);
+                FurnishingStatus.PutRecords(FurnishingStatuses);
+                GameStatus.PutRecords(GameStatuses);
+                InteractionStatus.PutRecords(InteractionStatuses);
+                RegionStatus.PutRecords(RegionStatuses);
+                ScriptStatus.PutRecords(ScriptStatuses);
+                #endregion
+
+                return true;
+            }
+            catch (Exception saveException)
+            {
+                Logger.Log(LogLevel.Error, Resources.ErrorSavingModels, saveException);
                 return false;
             }
         }

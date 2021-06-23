@@ -928,7 +928,6 @@ static Parquet.All.GameStatuses.get -> System.Collections.Generic.IDictionary<Pa
 static Parquet.All.GetIDRangeForType(Parquet.Model model) -> Parquet.Range<Parquet.ModelID>
 static Parquet.All.GetIDRangeForType(Parquet.ModelID id) -> Parquet.Range<Parquet.ModelID>
 static Parquet.All.GetIDRangeForType(System.Type modelType) -> Parquet.Range<Parquet.ModelID>
-static Parquet.All.InitializeCollections(System.Collections.Generic.IEnumerable<Parquet.Beings.PronounGroup> pronouns, System.Collections.Generic.IEnumerable<Parquet.Games.GameModel> games, System.Collections.Generic.IEnumerable<Parquet.Parquets.FloorModel> floors, System.Collections.Generic.IEnumerable<Parquet.Parquets.BlockModel> blocks, System.Collections.Generic.IEnumerable<Parquet.Parquets.FurnishingModel> furnishings, System.Collections.Generic.IEnumerable<Parquet.Parquets.CollectibleModel> collectibles, System.Collections.Generic.IEnumerable<Parquet.Beings.CritterModel> critters, System.Collections.Generic.IEnumerable<Parquet.Beings.CharacterModel> characters, System.Collections.Generic.IEnumerable<Parquet.Biomes.BiomeRecipe> biomes, System.Collections.Generic.IEnumerable<Parquet.Crafts.CraftingRecipe> craftingRecipes, System.Collections.Generic.IEnumerable<Parquet.Rooms.RoomRecipe> roomRecipes, System.Collections.Generic.IEnumerable<Parquet.Regions.RegionModel> regions, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Parquet.ModelID, Parquet.Regions.RegionStatus>> regionStatuses, System.Collections.Generic.IEnumerable<Parquet.Scripts.ScriptModel> scripts, System.Collections.Generic.IEnumerable<Parquet.Scripts.InteractionModel> interactions, System.Collections.Generic.IEnumerable<Parquet.Items.ItemModel> items) -> void
 static Parquet.All.Interactions.get -> Parquet.ModelCollection<Parquet.Scripts.InteractionModel>
 static Parquet.All.InteractionStatuses.get -> System.Collections.Generic.IDictionary<Parquet.ModelID, Parquet.Scripts.InteractionStatus>
 static Parquet.All.Items.get -> Parquet.ModelCollection<Parquet.Items.ItemModel>
@@ -942,7 +941,9 @@ static Parquet.All.RoomRecipes.get -> Parquet.ModelCollection<Parquet.Rooms.Room
 static Parquet.All.Scripts.get -> Parquet.ModelCollection<Parquet.Scripts.ScriptModel>
 static Parquet.All.ScriptStatuses.get -> System.Collections.Generic.IDictionary<Parquet.ModelID, Parquet.Scripts.ScriptStatus>
 static Parquet.All.TryLoadModels() -> bool
+static Parquet.All.TryLoadStatuses() -> bool
 static Parquet.All.TrySaveModels() -> bool
+static Parquet.All.TrySaveStatuses() -> bool
 static Parquet.Beings.CharacterModel.Unused.get -> Parquet.Beings.CharacterModel
 static Parquet.Beings.CharacterStatus.operator !=(Parquet.Beings.CharacterStatus status1, Parquet.Beings.CharacterStatus status2) -> bool
 static Parquet.Beings.CharacterStatus.operator ==(Parquet.Beings.CharacterStatus status1, Parquet.Beings.CharacterStatus status2) -> bool

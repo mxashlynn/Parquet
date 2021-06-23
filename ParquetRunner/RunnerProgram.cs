@@ -200,7 +200,6 @@ namespace ParquetRunner
             Games = new List<GameModel> { TestGame };
             Interactions = new List<InteractionModel> { TestInteraction };
             Regions = new List<RegionModel> { TestRegionModel };
-            RegionStatuses = new Dictionary<ModelID, RegionStatus> { { TestRegionModel.ID, TestRegionStatus } };
             Floors = new List<FloorModel> { TestFloor };
             Blocks = new List<BlockModel> { TestBlock, TestLiquid };
             Furnishings = new List<FurnishingModel> { TestFurnishing };
@@ -209,9 +208,13 @@ namespace ParquetRunner
             Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
             Scripts = new List<ScriptModel> { TestScript };
 
+            RegionStatuses = new Dictionary<ModelID, RegionStatus> { { TestRegionModel.ID, TestRegionStatus } };
+
             All.InitializeModelCollections(PronounGroups, Games, Floors, Blocks, Furnishings, Collectibles, Critters, Characters,
-                                           BiomeRecipes, CraftingRecipes, RoomRecipes, Regions, RegionStatuses, Scripts, Interactions,
-                                           Items);
+                                           BiomeRecipes, CraftingRecipes, RoomRecipes, Regions, Scripts, Interactions, Items);
+
+            // TODO [Maps] Replace these NULLs with valid test values.
+            All.TryInitializeStatusCollections(null, null, null, null, null, null, null, RegionStatuses, null);
             #endregion
         }
     }
