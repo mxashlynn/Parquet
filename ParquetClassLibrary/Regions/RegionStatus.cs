@@ -43,7 +43,9 @@ namespace Parquet.Regions
         public ParquetStatusPackGrid ParquetStatuses { get; }
         #endregion
 
-        #region Collections
+        #region Volatile Status
+        // NOTE: The state in this region is regularly regenerated during play and not serialized.
+
         /// <summary>
         /// All of the <see cref="Room"/>s detected.
         /// </summary>
