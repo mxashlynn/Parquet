@@ -603,13 +603,11 @@ namespace Parquet
         /// The collections' current contents, if any, are discarded.
         /// </summary>
         /// <param name="characterStatuses">All characters currently tracked in the game.</param>
-        /// <param name="critterStatuses">All critters currently tracked in the game.</param>
         /// <param name="gameStatuses">All games currently tracked in the game.</param>
         /// <param name="interactionStatuses">All interactions currently tracked in the game.</param>
         /// <param name="regionStatuses">All maps that have already been generated in the game.</param>
         /// <param name="scriptStatuses">All scripts that are currently running in the game.</param>
         internal static bool TryInitializeStatusCollections(IReadOnlyDictionary<ModelID, CharacterStatus> characterStatuses,
-                                                            IReadOnlyDictionary<ModelID, CritterStatus> critterStatuses,
                                                             IReadOnlyDictionary<ModelID, GameStatus> gameStatuses,
                                                             IReadOnlyDictionary<ModelID, InteractionStatus> interactionStatuses,
                                                             IReadOnlyDictionary<ModelID, RegionStatus> regionStatuses,
@@ -619,8 +617,8 @@ namespace Parquet
 
             try
             {
+                CritterStatuses.Clear();
                 success = CharacterStatuses.TryReplaceWith(characterStatuses)
-                    & CritterStatuses.TryReplaceWith(critterStatuses)
                     & GameStatuses.TryReplaceWith(gameStatuses)
                     & InteractionStatuses.TryReplaceWith(interactionStatuses)
                     & RegionStatuses.TryReplaceWith(regionStatuses)
@@ -736,15 +734,13 @@ namespace Parquet
             {
                 #region Read Statuses
                 var characterStatuses = CharacterStatus.GetRecords();
-                var critterStatuses = CritterStatus.GetRecords();
                 var gameStatuses = GameStatus.GetRecords();
                 var interactionStatuses = InteractionStatus.GetRecords();
                 var regionStatuses = RegionStatus.GetRecords();
                 var scriptStatuses = ScriptStatus.GetRecords();
                 #endregion
 
-                return TryInitializeStatusCollections(characterStatuses, critterStatuses, gameStatuses, interactionStatuses,
-                                                      regionStatuses, scriptStatuses);
+                return TryInitializeStatusCollections(characterStatuses, gameStatuses, interactionStatuses, regionStatuses, scriptStatuses);
             }
             catch (Exception loadException)
             {
@@ -762,8 +758,7 @@ namespace Parquet
             try
             {
                 #region Write Status
-                 CharacterStatus.PutRecords(CharacterStatuses);
-                CritterStatus.PutRecords(CritterStatuses);
+                CharacterStatus.PutRecords(CharacterStatuses);
                 GameStatus.PutRecords(GameStatuses);
                 InteractionStatus.PutRecords(InteractionStatuses);
                 RegionStatus.PutRecords(RegionStatuses);

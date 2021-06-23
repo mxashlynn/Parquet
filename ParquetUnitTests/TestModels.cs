@@ -213,7 +213,7 @@ namespace ParquetUnitTests
                                            BiomeRecipes, CraftingRecipes, RoomRecipes, Regions, Scripts, Interactions,
                                            Items);
             // TODO [Maps] Replace these NULLs with valid test values.
-            All.TryInitializeStatusCollections(null, null, null, null, RegionStatuses, null);
+            All.TryInitializeStatusCollections(null, null, null, RegionStatuses, null);
             #endregion
         }
     }
