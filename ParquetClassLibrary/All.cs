@@ -568,84 +568,6 @@ namespace Parquet
                                                         IEnumerable<CraftingRecipe> craftingRecipes,
                                                         IEnumerable<RoomRecipe> roomRecipes,
                                                         IEnumerable<RegionModel> regions,
-                                                        IEnumerable<KeyValuePair<ModelID, RegionStatus>> regionStatuses,
-                                                        IEnumerable<ScriptModel> scripts,
-                                                        IEnumerable<InteractionModel> interactions,
-                                                        IEnumerable<ItemModel> items)
-        {
-            CharacterStatuses
-            CritterStatuses
-            BlockStatuses
-            FloorStatuses
-            FurnishingStatuses
-            GameStatuses
-            InteractionStatuses
-            RegionStatuses
-            ScriptStatuses
-
-
-            Games = new ModelCollection<GameModel>(GameIDs, games);
-            Floors = new ModelCollection<FloorModel>(FloorIDs, floors);
-            Blocks = new ModelCollection<BlockModel>(BlockIDs, blocks);
-            Furnishings = new ModelCollection<FurnishingModel>(FurnishingIDs, furnishings);
-            Collectibles = new ModelCollection<CollectibleModel>(CollectibleIDs, collectibles);
-            Parquets = new ModelCollection<ParquetModel>(ParquetIDs, ((IEnumerable<ParquetModel>)Floors)
-                .Concat(Blocks)
-                .Concat(Furnishings)
-                .Concat(Collectibles));
-            Critters = new ModelCollection<CritterModel>(CritterIDs, critters);
-            Characters = new ModelCollection<CharacterModel>(CharacterIDs, characters);
-            Beings = new ModelCollection<BeingModel>(BeingIDs, ((IEnumerable<BeingModel>)Characters)
-                .Concat(Critters));
-            BiomeRecipes = new ModelCollection<BiomeRecipe>(BiomeRecipeIDs, biomes);
-            CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, craftingRecipes);
-            RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, roomRecipes);
-            Regions = new ModelCollection<RegionModel>(RegionIDs, regions);
-            Scripts = new ModelCollection<ScriptModel>(ScriptIDs, scripts);
-            Interactions = new ModelCollection<InteractionModel>(InteractionIDs, interactions);
-            Items = new ModelCollection<ItemModel>(ItemIDs, items);
-
-            PronounGroups = new HashSet<PronounGroup>(pronouns);
-            RegionStatuses = new Dictionary<ModelID, RegionStatus>(regionStatuses);
-
-            CollectionsHaveBeenInitialized = true;
-        }
-
-
-        /// <summary>
-        /// Initializes the <see cref="Status{T}"/> collections from the given collections.
-        /// </summary>
-        /// <param name="pronouns">The pronouns that the game knows by default.</param>
-        /// <param name="characters">All characters to be used in the game.</param>
-        /// <param name="critters">All critters to be used in the game.</param>
-        /// <param name="biomes">All biomes to be used in the game.</param>
-        /// <param name="craftingRecipes">All crafting recipes to be used in the game.</param>
-        /// <param name="games">All games or episodes to be used in the game.</param>
-        /// <param name="interactions">All interactions to be used in the game.</param>
-        /// <param name="regions">All region metadata to be used in the game.</param>
-        /// <param name="regionStatuses">All maps that have already been generated in the game.</param>
-        /// <param name="floors">All floors to be used in the game.</param>
-        /// <param name="blocks">All blocks to be used in the game.</param>
-        /// <param name="furnishings">All furnishings to be used in the game.</param>
-        /// <param name="collectibles">All collectibles to be used in the game.</param>
-        /// <param name="roomRecipes">All room recipes to be used in the game.</param>
-        /// <param name="scripts">All scripts to be used in the game.</param>
-        /// <param name="items">All items to be used in the game.</param>
-        /// <remarks>The collections of models must be separately cleared between calls to this initialization routine.</remarks>
-        /// <seealso cref="Clear"/>
-        internal static void InitializeStatusCollections(IEnumerable<PronounGroup> pronouns,
-                                                        IEnumerable<GameModel> games,
-                                                        IEnumerable<FloorModel> floors,
-                                                        IEnumerable<BlockModel> blocks,
-                                                        IEnumerable<FurnishingModel> furnishings,
-                                                        IEnumerable<CollectibleModel> collectibles,
-                                                        IEnumerable<CritterModel> critters,
-                                                        IEnumerable<CharacterModel> characters,
-                                                        IEnumerable<BiomeRecipe> biomes,
-                                                        IEnumerable<CraftingRecipe> craftingRecipes,
-                                                        IEnumerable<RoomRecipe> roomRecipes,
-                                                        IEnumerable<RegionModel> regions,
-                                                        IEnumerable<KeyValuePair<ModelID, RegionStatus>> regionStatuses,
                                                         IEnumerable<ScriptModel> scripts,
                                                         IEnumerable<InteractionModel> interactions,
                                                         IEnumerable<ItemModel> items)
@@ -692,11 +614,49 @@ namespace Parquet
             Scripts = new ModelCollection<ScriptModel>(ScriptIDs, scripts);
             Interactions = new ModelCollection<InteractionModel>(InteractionIDs, interactions);
             Items = new ModelCollection<ItemModel>(ItemIDs, items);
-
             PronounGroups = new HashSet<PronounGroup>(pronouns);
-            RegionStatuses = new Dictionary<ModelID, RegionStatus>(regionStatuses);
 
             CollectionsHaveBeenInitialized = true;
+        }
+
+
+        /// <summary>
+        /// Initializes the <see cref="Status{T}"/> collections from the given collections.
+        /// The collections' current contents, if any, are discarded.
+        /// </summary>
+        /// <param name="characterStatuses">All characters currently tracked in the game.</param>
+        /// <param name="critterStatuses">All critters currently tracked in the game.</param>
+        /// <param name="blockStatuses">All blocks currently tracked in the game.</param>
+        /// <param name="floorStatuses">All floors currently tracked in the game.</param>
+        /// <param name="furnishingStatuses">All furnishings currently tracked in the game.</param>
+        /// <param name="gameStatuses">All games currently tracked in the game.</param>
+        /// <param name="interactionStatuses">All interactions currently tracked in the game.</param>
+        /// <param name="regionStatuses">All maps that have already been generated in the game.</param>
+        /// <param name="scriptStatuses">All scripts that are currently running in the game.</param>
+        internal static void InitializeStatusCollections(IDictionary<ModelID, CharacterStatus> characterStatuses,
+                                                         IDictionary<ModelID, CritterStatus> critterStatuses,
+                                                         IDictionary<ModelID, BlockStatus> blockStatuses,
+                                                         IDictionary<ModelID, FloorStatus> floorStatuses,
+                                                         IDictionary<ModelID, FurnishingStatus> furnishingStatuses,
+                                                         IDictionary<ModelID, GameStatus> gameStatuses,
+                                                         IDictionary<ModelID, InteractionStatus> interactionStatuses,
+                                                         IDictionary<ModelID, RegionStatus> regionStatuses,
+                                                         IDictionary<ModelID, ScriptStatus> scriptStatuses)
+        {
+            // TODO [MAPS] This should be part of the load method.
+            //#region Read Maps
+            //var maps = RegionStatus.GetRecords();
+            //#endregion
+
+            CharacterStatuses.TryReplaceWith(characterStatuses);
+            CritterStatuses?.TryReplaceWith(critterStatuses);
+            BlockStatuses?.TryReplaceWith(blockStatuses);
+            FloorStatuses?.TryReplaceWith(floorStatuses);
+            FurnishingStatuses?.TryReplaceWith(furnishingStatuses);
+            GameStatuses?.TryReplaceWith(gameStatuses);
+            InteractionStatuses?.TryReplaceWith(interactionStatuses);
+            RegionStatuses?.TryReplaceWith(regionStatuses);
+            ScriptStatuses?.TryReplaceWith(scriptStatuses);
         }
         #endregion
 
@@ -734,12 +694,8 @@ namespace Parquet
                 var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
                 #endregion
 
-                #region Read Maps
-                var maps = RegionStatus.GetRecords();
-                #endregion
-
                 InitializeModelCollections(pronounGroups, games, floors, blocks, furnishings, collectibles, critters, characters,
-                                      biomeRecipes, craftingRecipes, roomRecipes, regions, maps, scripts, interactions, items);
+                                           biomeRecipes, craftingRecipes, roomRecipes, regions, scripts, interactions, items);
                 return true;
             }
             catch (Exception loadException)
@@ -796,11 +752,11 @@ namespace Parquet
         }
 
         /// <summary>
-        /// Clears all the <see cref="ModelCollection{T}"/>s contained in <see cref="All"/>.
+        /// Clears all collections, including all <see cref="ModelCollection{T}"/>s, contained in <see cref="All"/>.
         /// </summary>
         /// <remarks>
         /// This method must be called between calls to the initialization routines.
-        /// This method is only available when <see cref="LibraryState.IsPlayMode"/> is <c>true</c>.
+        /// This method is only available when <see cref="LibraryState.IsPlayMode"/> is <c>false</c>.
         /// Typically, games should initialize <see cref="All"/> only once per run whereas tools may reinitialize any number of times.
         /// </remarks>
         public static void Clear()
@@ -827,7 +783,16 @@ namespace Parquet
                 ((IMutableModelCollection<InteractionModel>)Interactions)?.Clear();
                 ((IMutableModelCollection<ItemModel>)Items)?.Clear();
                 ((HashSet<PronounGroup>)PronounGroups)?.Clear();
+                CharacterStatuses?.Clear();
+                CritterStatuses?.Clear();
+                BlockStatuses?.Clear();
+                FloorStatuses?.Clear();
+                FurnishingStatuses?.Clear();
+                GameStatuses?.Clear();
+                InteractionStatuses?.Clear();
                 RegionStatuses?.Clear();
+                ScriptStatuses?.Clear();
+
                 CollectionsHaveBeenInitialized = false;
             }
         }
