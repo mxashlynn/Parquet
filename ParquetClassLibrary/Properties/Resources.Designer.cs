@@ -151,11 +151,20 @@ namespace Parquet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tried to replace the content of dictionary but encountered the error: {0}.
+        /// </summary>
+        internal static string ErrorCannotReplaceDictionary {
+            get {
+                return ResourceManager.GetString("ErrorCannotReplaceDictionary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tried to replace non-contained {0} &apos;{1}&apos;.  Did you mean to call Add?.
         /// </summary>
-        internal static string ErrorCannotReplace {
+        internal static string ErrorCannotReplaceModel {
             get {
-                return ResourceManager.GetString("ErrorCannotReplace", resourceCulture);
+                return ResourceManager.GetString("ErrorCannotReplaceModel", resourceCulture);
             }
         }
         

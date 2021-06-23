@@ -242,7 +242,7 @@ namespace Parquet
 
             if (!Contains(model.ID))
             {
-                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotReplace,
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotReplaceModel,
                                                            typeof(TModel).Name, model.Name));
             }
             else
