@@ -97,12 +97,14 @@ namespace Parquet.Regions
                 ? RegionModel.Empty
                 : regionModel;
 
-            Debug.Assert(nonNullRegionModel.MapChunks.Rows == RegionModel.ChunksPerRegionDimension, "Row size mismatch.");
-            Debug.Assert(nonNullRegionModel.MapChunks.Columns == RegionModel.ChunksPerRegionDimension, "Column size mismatch.");
+            Debug.Assert(nonNullRegionModel.MapChunks is null ||
+                         nonNullRegionModel.MapChunks.Rows == RegionModel.ChunksPerRegionDimension, "Row size mismatch.");
+            Debug.Assert(nonNullRegionModel.MapChunks is null ||
+                         nonNullRegionModel.MapChunks.Columns == RegionModel.ChunksPerRegionDimension, "Column size mismatch.");
 
             var parquetModels = new ParquetModelPackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
 
-            for (var chunkX = 0; chunkX < nonNullRegionModel.MapChunks.Columns; chunkX++)
+            for (var chunkX = 0; chunkX < (nonNullRegionModel.MapChunks?.Columns ?? 0); chunkX++)
             {
                 for (var chunkY = 0; chunkY < nonNullRegionModel.MapChunks.Rows; chunkY++)
                 {
