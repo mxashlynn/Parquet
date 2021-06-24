@@ -504,6 +504,7 @@ namespace Parquet.Regions
         /// Returns the filename and path associated with <see cref="RegionStatus"/>'s definition file.
         /// </summary>
         /// <returns>A full path to the associated file.</returns>
+        // TODO [Save/Load]  This path must be player-specifiable.
         public static string FilePath
             => $"{All.ProjectDirectory}/{nameof(RegionStatus)}es.csv";
 

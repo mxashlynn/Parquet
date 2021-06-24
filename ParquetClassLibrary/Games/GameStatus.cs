@@ -1,4 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 
@@ -156,7 +160,55 @@ namespace Parquet.Games
             => new GameStatus(PlayerCharacterID, CurrentScriptID) as T;
         #endregion
 
+        #region Self Serialization
+        /// <summary>
+        /// Reads all <see cref="GameStatus"/> records from the appropriate file.
+        /// </summary>
+        /// <returns>The instances read.</returns>
+        public static Dictionary<ModelID, GameStatus> GetRecords()
+        {
+            using var reader = new StreamReader(FilePath);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+            csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.ToUpperInvariant();
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            return new Dictionary<ModelID, GameStatus>(csv.GetRecords<KeyValuePair<ModelID, GameStatus>>());
+        }
+
+        /// <summary>
+        /// Writes the given <see cref="GameStatus"/> records to the appropriate file.
+        /// </summary>
+        public static void PutRecords(IEnumerable<KeyValuePair<ModelID, GameStatus>> gameStatuses)
+        {
+            Precondition.IsNotNull(gameStatuses);
+
+            using var writer = new StreamWriter(FilePath, false, new UTF8Encoding(true, true));
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.Configuration.NewLine = NewLine.LF;
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            csv.WriteHeader<KeyValuePair<ModelID, GameStatus>>();
+            csv.NextRecord();
+            csv.WriteRecords(gameStatuses);
+        }
+        #endregion
+
         #region Utilities
+        /// <summary>
+        /// Returns the filename and path associated with <see cref="GameStatus"/>'s definition file.
+        /// </summary>
+        /// <returns>A full path to the associated file.</returns>
+        public static string FilePath
+            => $"{All.ProjectDirectory}/{nameof(GameStatus)}es.csv";
+
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="GameStatus"/>.
         /// </summary>

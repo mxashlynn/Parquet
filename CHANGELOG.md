@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/).
 ### Alpha
 - This update makes Parquet method calls more C# idiomatic.
 #### Adds
-- ...
+- The ability to serialize status classes.
 #### Removes
 - ...
 #### Changes

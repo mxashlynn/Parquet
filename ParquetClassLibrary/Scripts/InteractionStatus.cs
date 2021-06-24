@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.IO;
+using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 
@@ -164,7 +167,56 @@ namespace Parquet.Scripts
             => new InteractionStatus(State, StepCounter) as T;
         #endregion
 
+        #region Self Serialization
+        /// <summary>
+        /// Reads all <see cref="InteractionStatus"/> records from the appropriate file.
+        /// </summary>
+        /// <returns>The instances read.</returns>
+        public static Dictionary<ModelID, InteractionStatus> GetRecords()
+        {
+            using var reader = new StreamReader(FilePath);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+            csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.ToUpperInvariant();
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            return new Dictionary<ModelID, InteractionStatus>(csv.GetRecords<KeyValuePair<ModelID, InteractionStatus>>());
+        }
+
+        /// <summary>
+        /// Writes the given <see cref="InteractionStatus"/> records to the appropriate file.
+        /// </summary>
+        public static void PutRecords(IEnumerable<KeyValuePair<ModelID, InteractionStatus>> interactionStatuses)
+        {
+            Precondition.IsNotNull(interactionStatuses);
+
+            using var writer = new StreamWriter(FilePath, false, new UTF8Encoding(true, true));
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.Configuration.NewLine = NewLine.LF;
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            csv.WriteHeader<KeyValuePair<ModelID, InteractionStatus>>();
+            csv.NextRecord();
+            csv.WriteRecords(interactionStatuses);
+        }
+        #endregion
+
         #region Utilities
+        /// <summary>
+        /// Returns the filename and path associated with <see cref="InteractionStatus"/>'s definition file.
+        /// </summary>
+        /// <returns>A full path to the associated file.</returns>
+        // TODO [Save/Load]  This path must be player-specifiable.
+        public static string FilePath
+            => $"{All.ProjectDirectory}/{nameof(InteractionStatus)}es.csv";
+
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="InteractionStatus"/>.
         /// </summary>

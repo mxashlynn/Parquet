@@ -949,8 +949,11 @@ static Parquet.All.TryLoadStatuses() -> bool
 static Parquet.All.TrySaveModels() -> bool
 static Parquet.All.TrySaveStatuses() -> bool
 static Parquet.Beings.CharacterModel.Unused.get -> Parquet.Beings.CharacterModel
+static Parquet.Beings.CharacterStatus.FilePath.get -> string
+static Parquet.Beings.CharacterStatus.GetRecords() -> System.Collections.Generic.Dictionary<Parquet.ModelID, Parquet.Beings.CharacterStatus>
 static Parquet.Beings.CharacterStatus.operator !=(Parquet.Beings.CharacterStatus status1, Parquet.Beings.CharacterStatus status2) -> bool
 static Parquet.Beings.CharacterStatus.operator ==(Parquet.Beings.CharacterStatus status1, Parquet.Beings.CharacterStatus status2) -> bool
+static Parquet.Beings.CharacterStatus.PutRecords(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Parquet.ModelID, Parquet.Beings.CharacterStatus>> characterStatuses) -> void
 static Parquet.Beings.CharacterStatus.Unused.get -> Parquet.Beings.CharacterStatus
 static Parquet.Beings.CritterModel.Unused.get -> Parquet.Beings.CritterModel
 static Parquet.Beings.CritterStatus.operator !=(Parquet.Beings.CritterStatus status1, Parquet.Beings.CritterStatus status2) -> bool
@@ -1105,13 +1108,19 @@ static Parquet.Rooms.RoomConfiguration.MperimeterSpaces.get -> int
 static Parquet.Rooms.RoomConfiguration.MinWalkableSpaces.get -> int
 static Parquet.Rooms.RoomConfiguration.MinWalkableSpaces.set -> void
 static Parquet.Rooms.RoomConfiguration.PutRecord() -> void
+static Parquet.Scripts.InteractionStatus.FilePath.get -> string
+static Parquet.Scripts.InteractionStatus.GetRecords() -> System.Collections.Generic.Dictionary<Parquet.ModelID, Parquet.Scripts.InteractionStatus>
 static Parquet.Scripts.InteractionStatus.operator !=(Parquet.Scripts.InteractionStatus status1, Parquet.Scripts.InteractionStatus status2) -> bool
 static Parquet.Scripts.InteractionStatus.operator ==(Parquet.Scripts.InteractionStatus status1, Parquet.Scripts.InteractionStatus status2) -> bool
+static Parquet.Scripts.InteractionStatus.PutRecords(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Parquet.ModelID, Parquet.Scripts.InteractionStatus>> interactionStatuses) -> void
 static Parquet.Scripts.InteractionStatus.Unstarted.get -> Parquet.Scripts.InteractionStatus
 static Parquet.Scripts.ScriptNode.implicit operator Parquet.Scripts.ScriptNode(string value) -> Parquet.Scripts.ScriptNode
 static Parquet.Scripts.ScriptNode.implicit operator string(Parquet.Scripts.ScriptNode node) -> string
+static Parquet.Scripts.ScriptStatus.FilePath.get -> string
+static Parquet.Scripts.ScriptStatus.GetRecords() -> System.Collections.Generic.Dictionary<Parquet.ModelID, Parquet.Scripts.ScriptStatus>
 static Parquet.Scripts.ScriptStatus.operator !=(Parquet.Scripts.ScriptStatus status1, Parquet.Scripts.ScriptStatus status2) -> bool
 static Parquet.Scripts.ScriptStatus.operator ==(Parquet.Scripts.ScriptStatus status1, Parquet.Scripts.ScriptStatus status2) -> bool
+static Parquet.Scripts.ScriptStatus.PutRecords(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Parquet.ModelID, Parquet.Scripts.ScriptStatus>> scriptStatuses) -> void
 static Parquet.Scripts.ScriptStatus.Unstarted.get -> Parquet.Scripts.ScriptStatus
 static Parquet.StatusArrayExtensions.IsValidPosition<T>(this Parquet.Status<T>[,] array, Parquet.Point2D position) -> bool
 static readonly Parquet.All.AllDefinedIDs -> System.Collections.Generic.IReadOnlyList<Parquet.Range<Parquet.ModelID>>
