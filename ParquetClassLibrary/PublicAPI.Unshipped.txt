@@ -647,6 +647,7 @@ Parquet.Parquets.ParquetModelPack.BlockID.set -> void
 Parquet.Parquets.ParquetModelPack.CollectibleID.get -> Parquet.ModelID
 Parquet.Parquets.ParquetModelPack.CollectibleID.set -> void
 Parquet.Parquets.ParquetModelPack.Count.get -> int
+Parquet.Parquets.ParquetModelPack.Equals(Parquet.Parquets.ParquetModelPack other) -> bool
 Parquet.Parquets.ParquetModelPack.FloorID.get -> Parquet.ModelID
 Parquet.Parquets.ParquetModelPack.FloorID.set -> void
 Parquet.Parquets.ParquetModelPack.FurnishingID.get -> Parquet.ModelID
@@ -678,6 +679,7 @@ Parquet.Parquets.ParquetStatusPack.CurrentFloorStatus.get -> Parquet.Parquets.Fl
 Parquet.Parquets.ParquetStatusPack.CurrentFloorStatus.set -> void
 Parquet.Parquets.ParquetStatusPack.CurrentFurnishingStatus.get -> Parquet.Parquets.FurnishingStatus
 Parquet.Parquets.ParquetStatusPack.CurrentFurnishingStatus.set -> void
+Parquet.Parquets.ParquetStatusPack.Equals(Parquet.Parquets.ParquetStatusPack other) -> bool
 Parquet.Parquets.ParquetStatusPack.ParquetStatusPack() -> void
 Parquet.Parquets.ParquetStatusPack.ParquetStatusPack(Parquet.Parquets.FloorStatus floorStatus = null, Parquet.Parquets.BlockStatus blockStatus = null, Parquet.Parquets.FurnishingStatus furnishingStatus = null) -> void
 Parquet.Parquets.ParquetStatusPack.ParquetStatusPack(Parquet.Parquets.ParquetModelPack parquetModelPack) -> void

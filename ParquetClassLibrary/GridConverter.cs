@@ -16,7 +16,7 @@ namespace Parquet
     /// <typeparam name="TGrid">The type of the collection.</typeparam>
     public class GridConverter<TElement, TGrid> : CollectionGenericConverter
         where TGrid : IGrid<TElement>, new()
-        where TElement : ITypeConverter, new()
+        where TElement : ITypeConverter, IEquatable<TElement>, new()
     {
         /// <summary>Allows the converter to construct itself statically.</summary>
         internal static GridConverter<TElement, TGrid> ConverterFactory { get; } =
@@ -56,7 +56,16 @@ namespace Parquet
             {
                 for (var x = 0; x < grid.Columns; x++)
                 {
-                    result.Append(grid[y, x].ConvertToString(grid[y, x], row, memberMapData));
+                    if (EqualityComparer<TElement>.Default.Equals(grid[y, x], default))
+                    {
+                        // Use "None" as the serialization for all empty values.
+                        result.Append(nameof(ModelID.None));
+                    }
+                    else
+                    {
+                        // Serialize non-default values.
+                        result.Append(grid[y, x].ConvertToString(grid[y, x], row, memberMapData));
+                    }
                     result.Append(gridDelimiter[0]);
                 }
             }
@@ -103,7 +112,9 @@ namespace Parquet
                     }
 
                     var currentText = (string)gridTextEnumerator.Current;
-                    grid[y, x] = (TElement)ElementFactory.ConvertFromString(currentText, row, memberMapData);
+                    grid[y, x] = currentText.Equals(nameof(ModelID.None), StringComparison.OrdinalIgnoreCase)
+                        ? default
+                        : (TElement)ElementFactory.ConvertFromString(currentText, row, memberMapData);
                 }
             }
             return grid;

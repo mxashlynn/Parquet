@@ -8,7 +8,7 @@ namespace Parquet.Parquets
     /// Simple container for collocated stateful <see cref="ParquetStatus{ParquetModel}"/>s.
     /// Instances of this class are mutable during play.
     /// </summary>
-    public sealed class ParquetStatusPack : Pack<ParquetStatus<ParquetModel>>
+    public sealed class ParquetStatusPack : Pack<ParquetStatus<ParquetModel>>, IEquatable<ParquetStatusPack>
     {
         #region Class Defaults
         /// <summary>Canonical null <see cref="ParquetStatusPack"/>, representing an arbitrary standard pack.</summary>
@@ -84,13 +84,22 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether the specified <see cref="ParquetStatusPack"/> is equal to the current <see cref="ParquetStatusPack"/>.
         /// </summary>
+        /// <param name="other">The <see cref="ParquetStatusPack"/> to compare with the current.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public bool Equals(ParquetStatusPack other)
+            => other is not null
+            && CurrentFloorStatus == other.CurrentFloorStatus
+            && CurrentBlockStatus == other.CurrentBlockStatus
+            && CurrentFurnishingStatus == other.CurrentFurnishingStatus;
+
+        /// <summary>
+        /// Determines whether the specified <see cref="ParquetStatusPack"/> is equal to the current <see cref="ParquetStatusPack"/>.
+        /// </summary>
         /// <param name="pack">The <see cref="ParquetStatusPack"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals<T>(T pack)
             => pack is ParquetStatusPack statusPack
-            && CurrentFloorStatus == statusPack.CurrentFloorStatus
-            && CurrentBlockStatus == statusPack.CurrentBlockStatus
-            && CurrentFurnishingStatus == statusPack.CurrentFurnishingStatus;
+            && Equals(statusPack);
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetStatusPack"/>.
@@ -98,8 +107,8 @@ namespace Parquet.Parquets
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="ParquetStatusPack"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is ParquetStatusPack pack
-            && Equals(pack);
+            => obj is ParquetStatusPack statusPack
+            && Equals(statusPack);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStatusPack"/> is equal to another specified instance of <see cref="ParquetStatusPack"/>.

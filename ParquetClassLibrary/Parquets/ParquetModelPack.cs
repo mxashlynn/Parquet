@@ -8,7 +8,7 @@ namespace Parquet.Parquets
     /// Simple container for collocated <see cref="ParquetModel"/>s, one of each subtype.
     /// Instances of this class are mutable during play, although the <see cref="ParquetModel"/>s they contain are not.
     /// </summary>
-    public sealed class ParquetModelPack : Pack<ParquetModel>
+    public sealed class ParquetModelPack : Pack<ParquetModel>, IEquatable<ParquetModelPack>
     {
         #region Class Defaults
         /// <summary>Canonical null <see cref="ParquetModelPack"/>, representing an arbitrary empty pack.</summary>
@@ -127,14 +127,23 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether the specified <see cref="ParquetModelPack"/> is equal to the current <see cref="ParquetModelPack"/>.
         /// </summary>
+        /// <param name="other">The <see cref="ParquetModelPack"/> to compare with the current <see cref="ParquetModelPack"/>.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public bool Equals(ParquetModelPack other)
+            => other is not null
+            && FloorID == other.FloorID
+            && BlockID == other.BlockID
+            && FurnishingID == other.FurnishingID
+            && CollectibleID == other.CollectibleID;
+
+        /// <summary>
+        /// Determines whether the specified <see cref="ParquetModelPack"/> is equal to the current <see cref="ParquetModelPack"/>.
+        /// </summary>
         /// <param name="pack">The <see cref="ParquetModelPack"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals<T>(T pack)
             => pack is ParquetModelPack parquetModelPack
-            && FloorID == parquetModelPack.FloorID
-            && BlockID == parquetModelPack.BlockID
-            && FurnishingID == parquetModelPack.FurnishingID
-            && CollectibleID == parquetModelPack.CollectibleID;
+            && Equals(parquetModelPack);
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetModelPack"/>.
