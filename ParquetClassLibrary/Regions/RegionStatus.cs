@@ -162,21 +162,21 @@ namespace Parquet.Regions
             #region Local Helper Methods
             // Determines if the given BiomeRecipe matches the given Region.
             //     region -> The MapRegionModel to test.
-            //     inBiome -> The BiomeRecipe to test against.
+            //     biome -> The BiomeRecipe to test against.
             // Returns the given BiomeRecipe's ModelID if they match, otherwise returns the ModelID for the default biome.
-            static ModelID FindBiomeByTag(RegionStatus region, BiomeRecipe inBiome)
+            static ModelID FindBiomeByTag(RegionStatus region, BiomeRecipe biome)
                 // Prioritization of biome categories is hard-coded in the following way:
                 //    1 Room-based Biomes supersede
                 //    2 Liquid-based Biomes, which supersede
                 //    3 Land-based Biomes, which supersede
                 //    4 the default Biome.
-                => (inBiome.IsRoomBased
+                => (biome.IsRoomBased
                     && GetParquetsInRooms(region) >= BiomeConfiguration.RoomThreshold
-                    && ConstitutesBiome(region, inBiome, BiomeConfiguration.RoomThreshold))
-                || (inBiome.IsLiquidBased
-                    && ConstitutesBiome(region, inBiome, BiomeConfiguration.LiquidThreshold))
-                || ConstitutesBiome(region, inBiome, BiomeConfiguration.LandThreshold)
-                    ? inBiome.ID
+                    && ConstitutesBiome(region, biome, BiomeConfiguration.RoomThreshold))
+                || (biome.IsLiquidBased
+                    && ConstitutesBiome(region, biome, BiomeConfiguration.LiquidThreshold))
+                || ConstitutesBiome(region, biome, BiomeConfiguration.LandThreshold)
+                    ? biome.ID
                     : BiomeRecipe.None.ID;
 
             // Determines the number of individual parquets that are present inside Rooms in the given MapRegionModel.
@@ -204,45 +204,45 @@ namespace Parquet.Regions
 
             // Determines if the given region has enough parquets contributing to the given biome to exceed the given threshold.
             //     region -> The region to test.
-            //     inBiome -> The biome to test against.
-            //     inThreshold -> A total number of parquets that must be met for the region to qualify.
+            //     biome -> The biome to test against.
+            //     threshold -> A total number of parquets that must be met for the region to qualify.
             // Returns true if enough parquets contribute to the biome, false otherwise.
-            static bool ConstitutesBiome(RegionStatus region, BiomeRecipe inBiome, int inThreshold)
+            static bool ConstitutesBiome(RegionStatus region, BiomeRecipe biome, int threshold)
                 => CountMeetsOrExceedsThreshold(region,
-                                                parquet => parquet?.AddsToBiome.Contains(inBiome.ParquetCriteria) ?? false,
-                                                inThreshold);
+                                                parquet => parquet?.AddsToBiome.Contains(biome.ParquetCriteria) ?? false,
+                                                threshold);
 
             // Determines if the region has enough parquets satisfying the given predicate to meet or exceed the given threshold.
             //     region -> The region to test.
-            //     inPredicate -> A predicate indicating if the parquet should be counted.
+            //     predicate -> A predicate indicating if the parquet should be counted.
             //                    The predicate must accommodate a null argument.
-            //     inThreshold -> A total number of parquets that must be met for the region to qualify.
+            //     threshold -> A total number of parquets that must be met for the region to qualify.
             // Returns true if enough parquets satisfy the conditions given, false otherwise.
-            static bool CountMeetsOrExceedsThreshold(RegionStatus region, Predicate<ParquetModel> inPredicate, int inThreshold)
+            static bool CountMeetsOrExceedsThreshold(RegionStatus region, Predicate<ParquetModel> predicate, int threshold)
             {
                 var count = 0;
 
                 foreach (ParquetModelPack pack in region.ParquetModels)
                 {
-                    if (inPredicate(All.Floors.GetOrNull<FloorModel>(pack.FloorID)))
+                    if (predicate(All.Floors.GetOrNull<FloorModel>(pack.FloorID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Blocks.GetOrNull<BlockModel>(pack.BlockID)))
+                    if (predicate(All.Blocks.GetOrNull<BlockModel>(pack.BlockID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Furnishings.GetOrNull<FurnishingModel>(pack.FurnishingID)))
+                    if (predicate(All.Furnishings.GetOrNull<FurnishingModel>(pack.FurnishingID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Collectibles.GetOrNull<CollectibleModel>(pack.CollectibleID)))
+                    if (predicate(All.Collectibles.GetOrNull<CollectibleModel>(pack.CollectibleID)))
                     {
                         count++;
                     }
                 }
 
-                return count >= inThreshold;
+                return count >= threshold;
             }
             #endregion
         }
@@ -480,9 +480,9 @@ namespace Parquet.Regions
         /// <summary>
         /// Writes the given <see cref="RegionStatus"/> records to the appropriate file.
         /// </summary>
-        public static void PutRecords(IEnumerable<KeyValuePair<ModelID, RegionStatus>> inRegionStatuses)
+        public static void PutRecords(IEnumerable<KeyValuePair<ModelID, RegionStatus>> regionStatuses)
         {
-            Precondition.IsNotNull(inRegionStatuses);
+            Precondition.IsNotNull(regionStatuses);
 
             using var writer = new StreamWriter(FilePath, false, new UTF8Encoding(true, true));
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
@@ -495,7 +495,7 @@ namespace Parquet.Regions
 
             csv.WriteHeader<KeyValuePair<ModelID, RegionStatus>>();
             csv.NextRecord();
-            csv.WriteRecords(inRegionStatuses);
+            csv.WriteRecords(regionStatuses);
         }
         #endregion
 

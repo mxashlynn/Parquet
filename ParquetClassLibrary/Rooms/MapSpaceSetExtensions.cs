@@ -138,23 +138,23 @@ namespace Parquet.Rooms
             }
 
             // Returns the potential perimeter by finding all 4-connected MapSpaces in the given subgrid
-            // whose Content is Enclosing, beginning at the Position given by inStart.
-            IReadOnlySet<MapSpace> GetPotentialPerimeter(MapSpace inStart)
-                => GetSpaces(spaces.First().Grid).Search(inStart,
-                                                                space => space.Content.IsEnclosing,
-                                                                space => false).Visited;
+            // whose Content is Enclosing, beginning at the Position given by start.
+            IReadOnlySet<MapSpace> GetPotentialPerimeter(MapSpace start)
+                => GetSpaces(spaces.First().Grid)
+                    .Search(start, space => space.Content.IsEnclosing, space => false)
+                    .Visited;
 
             // Returns a Set of MapSpaces corresponding to the ParquetPackGrid.
-            static IReadOnlySet<MapSpace> GetSpaces(ParquetModelPackGrid inParquetPacks)
+            static IReadOnlySet<MapSpace> GetSpaces(ParquetModelPackGrid parquetPacks)
             {
-                Precondition.IsNotNull(inParquetPacks, nameof(inParquetPacks));
+                Precondition.IsNotNull(parquetPacks, nameof(parquetPacks));
 
                 var uniqueResults = new HashSet<MapSpace>();
-                for (var y = 0; y < inParquetPacks.Rows; y++)
+                for (var y = 0; y < parquetPacks.Rows; y++)
                 {
-                    for (var x = 0; x < inParquetPacks.Columns; x++)
+                    for (var x = 0; x < parquetPacks.Columns; x++)
                     {
-                        var currentSpace = new MapSpace(x, y, inParquetPacks[y, x], inParquetPacks);
+                        var currentSpace = new MapSpace(x, y, parquetPacks[y, x], parquetPacks);
                         uniqueResults.Add(currentSpace);
                     }
                 }
@@ -262,11 +262,11 @@ namespace Parquet.Rooms
             /// <summary>A collection of all the <see cref="MapSpace"/>s visited during the search.</summary>
             internal IReadOnlySet<MapSpace> Visited { get; private set; }
 
-            internal SearchResults(bool inGoalFound, bool inCycleFound, IReadOnlySet<MapSpace> inVisited)
+            internal SearchResults(bool isGoalFound, bool isCycleFound, IReadOnlySet<MapSpace> visitedSpaces)
             {
-                GoalFound = inGoalFound;
-                CycleFound = inCycleFound;
-                Visited = inVisited;
+                GoalFound = isGoalFound;
+                CycleFound = isCycleFound;
+                Visited = visitedSpaces;
             }
         }
         #endregion

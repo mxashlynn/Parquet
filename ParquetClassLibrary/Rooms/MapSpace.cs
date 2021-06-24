@@ -54,12 +54,16 @@ namespace Parquet.Rooms
 
         #region Position Offsets
         /// <summary>Finds the <see cref="MapSpace"/> related to the given space by the given offset, if any.</summary>
+        /// <param name="offset">
+        /// A <see cref="Point2D"/> to add to the current <see cref="MapSpace"/>'s position
+        /// to determine the position of the MapSpace sought.
+        /// </param>
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
-        public MapSpace Neighbor(Point2D inOffset)
+        public MapSpace Neighbor(Point2D offset)
         {
             Precondition.IsNotNull(Grid, nameof(Grid));
 
-            var offsetPosition = Position + inOffset;
+            var offsetPosition = Position + offset;
             return Grid.IsValidPosition(offsetPosition)
                 ? new MapSpace(offsetPosition, Grid[offsetPosition.Y, offsetPosition.X], Grid)
                 : Empty;

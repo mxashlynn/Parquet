@@ -835,7 +835,7 @@ Parquet.Rooms.MapSpace.IsEmpty.get -> bool
 Parquet.Rooms.MapSpace.IsEnclosing.get -> bool
 Parquet.Rooms.MapSpace.MapSpace(int x, int y, Parquet.Parquets.ParquetModelPack content, Parquet.Parquets.ParquetModelPackGrid grid) -> void
 Parquet.Rooms.MapSpace.MapSpace(Parquet.Point2D position, Parquet.Parquets.ParquetModelPack content, Parquet.Parquets.ParquetModelPackGrid grid) -> void
-Parquet.Rooms.MapSpace.Neighbor(Parquet.Point2D inOffset) -> Parquet.Rooms.MapSpace
+Parquet.Rooms.MapSpace.Neighbor(Parquet.Point2D offset) -> Parquet.Rooms.MapSpace
 Parquet.Rooms.MapSpace.Neighbors() -> System.Collections.Generic.IReadOnlyList<Parquet.Rooms.MapSpace>
 Parquet.Rooms.MapSpace.NorthNeighbor() -> Parquet.Rooms.MapSpace
 Parquet.Rooms.MapSpace.Position.get -> Parquet.Point2D
@@ -986,8 +986,11 @@ static Parquet.Crafts.StrikePanelArrayExtensions.IsValidPosition(this Parquet.Cr
 static Parquet.Crafts.StrikePanelGrid.Empty.get -> Parquet.Crafts.StrikePanelGrid
 static Parquet.Games.GameModel.Empty.get -> Parquet.Games.GameModel
 static Parquet.Games.GameStatus.Default.get -> Parquet.Games.GameStatus
+static Parquet.Games.GameStatus.FilePath.get -> string
+static Parquet.Games.GameStatus.GetRecords() -> System.Collections.Generic.Dictionary<Parquet.ModelID, Parquet.Games.GameStatus>
 static Parquet.Games.GameStatus.operator !=(Parquet.Games.GameStatus status1, Parquet.Games.GameStatus status2) -> bool
 static Parquet.Games.GameStatus.operator ==(Parquet.Games.GameStatus status1, Parquet.Games.GameStatus status2) -> bool
+static Parquet.Games.GameStatus.PutRecords(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Parquet.ModelID, Parquet.Games.GameStatus>> gameStatuses) -> void
 static Parquet.IReadOnlyCollectionOfTagsExtensions.ContainsOrdinalIgnoreCase(this System.Collections.Generic.IReadOnlyCollection<Parquet.ModelTag> collection, Parquet.ModelTag tag) -> bool
 static Parquet.IReadOnlyCollectionOfTagsExtensions.ContainsPrefixOrdinalIgnoreCase(this System.Collections.Generic.IReadOnlyCollection<Parquet.ModelTag> collection, Parquet.ModelTag prefix) -> bool
 static Parquet.IReadOnlyListOfTagsExtensions.ContainsOrdinalIgnoreCase(this System.Collections.Generic.IReadOnlyList<Parquet.ModelTag> collection, Parquet.ModelTag tag) -> bool
@@ -1086,7 +1089,7 @@ static Parquet.Regions.RegionStatus.FilePath.get -> string
 static Parquet.Regions.RegionStatus.GetRecords() -> System.Collections.Generic.Dictionary<Parquet.ModelID, Parquet.Regions.RegionStatus>
 static Parquet.Regions.RegionStatus.operator !=(Parquet.Regions.RegionStatus status1, Parquet.Regions.RegionStatus status2) -> bool
 static Parquet.Regions.RegionStatus.operator ==(Parquet.Regions.RegionStatus status1, Parquet.Regions.RegionStatus status2) -> bool
-static Parquet.Regions.RegionStatus.PutRecords(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Parquet.ModelID, Parquet.Regions.RegionStatus>> inRegionStatuses) -> void
+static Parquet.Regions.RegionStatus.PutRecords(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Parquet.ModelID, Parquet.Regions.RegionStatus>> regionStatuses) -> void
 static Parquet.Regions.RegionStatus.Unused.get -> Parquet.Regions.RegionStatus
 static Parquet.Rooms.MapSpace.operator !=(Parquet.Rooms.MapSpace space1, Parquet.Rooms.MapSpace space2) -> bool
 static Parquet.Rooms.MapSpace.operator ==(Parquet.Rooms.MapSpace space1, Parquet.Rooms.MapSpace space2) -> bool
