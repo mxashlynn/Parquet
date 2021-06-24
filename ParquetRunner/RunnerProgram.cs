@@ -234,15 +234,13 @@ namespace ParquetRunner
             LibraryState.IsPlayMode = true;
 
             Logger.Log(LogLevel.Info, All.TryLoadModels() ? "Loaded models." : "Failed to load!");
+            // TODO [MAP] Logger.Log(LogLevel.Info, All.TryLoadStatuses() ? "Loaded statuses." : "Failed to load!");
 
             var game = new GameModel(All.GameIDs.Minimum + 1, "Sample Game", "", "", null, false, "", -1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
             var episode = new GameModel(All.GameIDs.Minimum + 2, "Sample Episode", "", "", null, true, "In Which A Library Is Tested", 1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
             Logger.Log(LogLevel.Info, game);
             Logger.Log(LogLevel.Info, episode);
             Logger.Log(LogLevel.Info, $"Item range = {All.ItemIDs}");
-
-            var regionStatus = new RegionStatus(All.Regions.GetOrNull<RegionModel>(All.RegionIDs.Minimum));
-            All.RegionStatuses[All.RegionIDs.Minimum] = regionStatus;
 
             Logger.Log(LogLevel.Info, All.TrySaveStatuses() ? "Saved game state." : "Failed to save!");
             Logger.Log(LogLevel.Info, All.TrySaveModels() ? "Saved models." : "Failed to save!");
