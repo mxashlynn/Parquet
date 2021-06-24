@@ -17,9 +17,6 @@ namespace Parquet.Parquets
         #endregion
 
         #region Status
-        /// <summary>The <see cref="BlockModel"/>'s native toughness.</summary>
-        private readonly int MaxToughness;
-
         /// <summary>The <see cref="BlockModel"/>'s current toughness.</summary>
         private int backingToughness;
 
@@ -31,6 +28,9 @@ namespace Parquet.Parquets
             get => backingToughness;
             set => backingToughness = value.Normalize(BlockModel.MinToughness, MaxToughness);
         }
+
+        /// <summary>The <see cref="BlockModel"/>'s native toughness.</summary>
+        private readonly int MaxToughness;
         #endregion
 
         #region Initialization
