@@ -59,9 +59,15 @@ namespace Parquet.Parquets
             Precondition.IsNotNull(parquetModelPack);
             var nonNullParquetModelPack = parquetModelPack ?? ParquetModelPack.Empty;
 
-            CurrentFloorStatus = new FloorStatus(nonNullParquetModelPack.FloorID);
-            CurrentBlockStatus = new BlockStatus(nonNullParquetModelPack.BlockID);
-            CurrentFurnishingStatus = new FurnishingStatus(nonNullParquetModelPack.FurnishingID);
+            CurrentFloorStatus = nonNullParquetModelPack.FloorID != ModelID.None
+                ? new FloorStatus(nonNullParquetModelPack.FloorID)
+                : null;
+            CurrentBlockStatus = nonNullParquetModelPack.BlockID != ModelID.None
+                ? new BlockStatus(nonNullParquetModelPack.BlockID)
+                : null;
+            CurrentFurnishingStatus = nonNullParquetModelPack.FurnishingID != ModelID.None
+                ? new FurnishingStatus(nonNullParquetModelPack.FurnishingID)
+                : null;
         }
         #endregion
 

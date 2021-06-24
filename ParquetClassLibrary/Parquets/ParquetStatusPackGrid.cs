@@ -69,7 +69,10 @@ namespace Parquet.Parquets
             {
                 for (var x = 0; x < nonNullParquetModelPackGrid.Columns; x++)
                 {
-                    ParquetStatuses[y, x] = new ParquetStatusPack(nonNullParquetModelPackGrid[y, x]);
+                    if (!nonNullParquetModelPackGrid[y, x].IsEmpty)
+                    {
+                        ParquetStatuses[y, x] = new ParquetStatusPack(nonNullParquetModelPackGrid[y, x]);
+                    }
                 }
             }
         }
