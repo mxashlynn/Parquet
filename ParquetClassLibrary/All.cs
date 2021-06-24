@@ -472,7 +472,19 @@ namespace Parquet
                 { typeof(RunState), new EmptyTolerantEnumConverter(typeof(RunState)) },
                 #endregion
 
-                #region Types Implementing ITypeConverter
+                #region Status Types Implementing ITypeConverter
+                { typeof(CharacterStatus), CharacterStatus.ConverterFactory },
+                { typeof(CritterStatus), CritterStatus.ConverterFactory },
+                { typeof(GameStatus), GameStatus.ConverterFactory },
+                { typeof(BlockStatus), BlockStatus.ConverterFactory },
+                { typeof(FloorStatus), FloorStatus.ConverterFactory },
+                { typeof(FurnishingStatus), FurnishingStatus.ConverterFactory },
+                { typeof(RegionStatus), RegionStatus.ConverterFactory },
+                { typeof(InteractionStatus), InteractionStatus.ConverterFactory },
+                { typeof(ScriptStatus), ScriptStatus.ConverterFactory },
+                #endregion
+
+                #region Other Types Implementing ITypeConverter
                 { typeof(ChunkDetail), ChunkDetail.ConverterFactory },
                 { typeof(InventorySlot), InventorySlot.ConverterFactory },
                 { typeof(Location), Location.ConverterFactory },
