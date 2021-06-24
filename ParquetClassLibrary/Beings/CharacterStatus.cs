@@ -337,7 +337,10 @@ namespace Parquet.Beings
         /// </summary>
         public static void PutRecords(IEnumerable<KeyValuePair<ModelID, CharacterStatus>> characterStatuses)
         {
-            Precondition.IsNotNull(characterStatuses);
+            if (characterStatuses is null)
+            {
+                characterStatuses = Enumerable.Empty<KeyValuePair<ModelID, CharacterStatus>>();
+            }
 
             using var writer = new StreamWriter(FilePath, false, new UTF8Encoding(true, true));
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);

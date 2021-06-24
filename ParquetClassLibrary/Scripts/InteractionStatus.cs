@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -191,7 +192,10 @@ namespace Parquet.Scripts
         /// </summary>
         public static void PutRecords(IEnumerable<KeyValuePair<ModelID, InteractionStatus>> interactionStatuses)
         {
-            Precondition.IsNotNull(interactionStatuses);
+            if (interactionStatuses is null)
+            {
+                interactionStatuses = Enumerable.Empty<KeyValuePair<ModelID, InteractionStatus>>();
+            }
 
             using var writer = new StreamWriter(FilePath, false, new UTF8Encoding(true, true));
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);

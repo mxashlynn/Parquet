@@ -482,7 +482,10 @@ namespace Parquet.Regions
         /// </summary>
         public static void PutRecords(IEnumerable<KeyValuePair<ModelID, RegionStatus>> regionStatuses)
         {
-            Precondition.IsNotNull(regionStatuses);
+            if (regionStatuses is null)
+            {
+                regionStatuses = Enumerable.Empty<KeyValuePair<ModelID, RegionStatus>>();
+            }
 
             using var writer = new StreamWriter(FilePath, false, new UTF8Encoding(true, true));
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
