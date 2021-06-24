@@ -493,7 +493,7 @@ namespace Parquet.Regions
                 csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
             }
 
-            csv.WriteHeader<RegionStatus>();
+            csv.WriteHeader<KeyValuePair<ModelID, RegionStatus>>();
             csv.NextRecord();
             csv.WriteRecords(inRegionStatuses);
         }
