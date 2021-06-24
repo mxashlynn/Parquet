@@ -234,6 +234,7 @@ namespace ParquetRunner
             LibraryState.IsPlayMode = true;
 
             Logger.Log(LogLevel.Info, All.TryLoadModels() ? "Loaded models." : "Failed to load!");
+            // TODO Note that loading may break with the current test RegionStatus as it may be malformed, not sure.
             // TODO [MAP] Logger.Log(LogLevel.Info, All.TryLoadStatuses() ? "Loaded statuses." : "Failed to load!");
 
             var game = new GameModel(All.GameIDs.Minimum + 1, "Sample Game", "", "", null, false, "", -1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
