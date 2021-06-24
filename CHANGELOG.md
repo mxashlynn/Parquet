@@ -5,17 +5,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/).
 
 
+<!--
 ## [0.5.0] - 2021-??-??
 ### Alpha
-- This update makes Parquet method calls more C# idiomatic.
+- ....
 #### Adds
-- The ability to serialize status classes.
+- Adds ability to serialize Status classes.
 #### Removes
 - ...
 #### Changes
+- Parquet method calls now follow C# idiom.
 - Simplifies the signature for creating/serializing CraftingRecipes.
 - Renames All.LoadFromCSVs to All.TryLoadModels.
 - Renames All.SaveToCSVs to All.TrySaveModels.
+-->
 
 ## [0.4.0] - 2021-02-23
 ### Pre-Alpha 3 API Revision
