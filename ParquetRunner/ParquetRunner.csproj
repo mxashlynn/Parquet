@@ -6,9 +6,9 @@
 
     <Product>Runner</Product>
     <PackageId>ParquetRunner</PackageId>
-    <Version>0.4.11.0</Version>
+    <Version>0.4.12.0</Version>
     <AssemblyVersion>0.4.0.0</AssemblyVersion>
-    <FileVersion>0.4.11.0</FileVersion>
+    <FileVersion>0.4.12.0</FileVersion>
     <InformationalVersion>Parquet Pre-Alpha 3</InformationalVersion>
 
     <Authors>Paige Ashlynn</Authors>
@@ -26,7 +26,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
 
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <NoWarn>CS1701;CS1702</NoWarn>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
@@ -41,17 +41,20 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <Configurations>Debug;Release</Configurations>
+    <BaseOutputPath>bin\</BaseOutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>DEBUG</DefineConstants>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <WarningLevel>5</WarningLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DefineConstants>TRACE</DefineConstants>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DocumentationFile>ParquetRunner.Documentation.xml</DocumentationFile>
+    <WarningLevel>5</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>

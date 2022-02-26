@@ -6,9 +6,9 @@
 
     <Product>Parquet</Product>
     <PackageId>Parquet</PackageId>
-    <Version>0.4.11.0</Version>
+    <Version>0.4.12.0</Version>
     <AssemblyVersion>0.4.0.0</AssemblyVersion>
-    <FileVersion>0.4.11.0</FileVersion>
+    <FileVersion>0.4.12.0</FileVersion>
     <InformationalVersion>Parquet Pre-Alpha 3</InformationalVersion>
 
     <Authors>Paige Ashlynn</Authors>
@@ -22,12 +22,12 @@
     <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>C# .net5 net5 game library</PackageTags>
+    <PackageTags>C# .net6 net6 game library</PackageTags>
     <PackageReleaseNotes>Code and documentation are incomplete and under rapid development. Expect frequent breaking changes.</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
 
     <OutputType>Library</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <NoWarn>CS1701;CS1702;CS0809</NoWarn>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
@@ -44,6 +44,9 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <Configurations>Debug;Release</Configurations>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <DocumentationFile>Parquet.xml</DocumentationFile>
+    <BaseOutputPath>bin\\</BaseOutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -51,12 +54,14 @@
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <DefineConstants>DEBUG</DefineConstants>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <WarningLevel>5</WarningLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DefineConstants>TRACE</DefineConstants>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DocumentationFile>Parquet.Documentation.xml</DocumentationFile>
+    <WarningLevel>5</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>

@@ -90,11 +90,12 @@ Icons?
 *.exe
 *.iap
 *.unitypackage
+ParquetClassLibrary/Parquet.xml
 ParquetClassLibrary/Parquet.Documentation.xml
 ParquetRunner/ParquetRunner.Documentation.xml
 ParquetUnitTests/ParquetUnitTests.Documentation.xml
 
 # ================== #
-# Random Paige Stuff #
+# Paige Stuff #
 # ================== #
 *.old
