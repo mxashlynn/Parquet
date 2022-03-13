@@ -456,7 +456,7 @@ namespace Parquet
         {
             foreach (var columnName in columnHeaders)
             {
-                recordsWithNewIDs.Append($"{columnName},");
+                recordsWithNewIDs.Append(CultureInfo.InvariantCulture, $"{columnName},");
             }
             recordsWithNewIDs.Remove(recordsWithNewIDs.Length - 1, 1);
         }
@@ -479,7 +479,7 @@ namespace Parquet
             foreach (var record in ModelID.RecordsWithMissingIDs)
             {
                 maxAssignedID++;
-                recordsNeedingIDs.Append($"\n{maxAssignedID}{record}");
+                recordsNeedingIDs.Append(CultureInfo.InvariantCulture, $"\n{maxAssignedID}{record}");
             }
         }
         #endregion
@@ -517,7 +517,7 @@ namespace Parquet
             var allBounds = new StringBuilder();
             foreach (var bound in Bounds)
             {
-                allBounds.Append($"{bound} ");
+                allBounds.Append(CultureInfo.InvariantCulture, $"{bound} ");
             }
             return $"Collects {typeof(TModel)}s over {allBounds}";
         }
