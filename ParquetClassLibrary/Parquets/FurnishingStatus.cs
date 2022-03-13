@@ -42,8 +42,6 @@ namespace Parquet.Parquets
         /// based on a given <see cref="FurnishingModel"/> identifier.
         /// </summary>
         /// <param name="furnishingID">The <see cref="ModelID"/> of the definitions being tracked.</param>
-        [SuppressMessage("Usage", "CA1801:Review unused parameters",
-            Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
         [SuppressMessage("Style", "IDE0060:Remove unused parameter",
             Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
         public FurnishingStatus(ModelID furnishingID)

@@ -56,8 +56,6 @@ namespace Parquet.Scripts
         /// based on a given <see cref="InteractionModel"/> instance.
         /// </summary>
         /// <param name="script">The script definition whose status is being tracked.</param>
-        [SuppressMessage("Usage", "CA1801:Review unused parameters",
-            Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
         [SuppressMessage("Style", "IDE0060:Remove unused parameter",
             Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
         public InteractionStatus(InteractionModel script)
