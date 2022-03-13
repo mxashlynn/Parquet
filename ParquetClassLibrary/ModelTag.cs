@@ -86,7 +86,7 @@ namespace Parquet
         /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="ModelTag"/> created from the <see cref="string"/>.</returns>
         public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
-            => string.Compare(nameof(None), text, StringComparison.OrdinalIgnoreCase) == 0
+            => string.Equals(nameof(None), text, StringComparison.OrdinalIgnoreCase)
                 ? (ModelTag)""
                 : (ModelTag)text;
 
@@ -99,7 +99,7 @@ namespace Parquet
         /// <returns>The <see cref="ModelTag"/> as a CSV record.</returns>
         public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
             => value is ModelTag tag
-                ? string.Compare("", tag, StringComparison.OrdinalIgnoreCase) == 0
+                ? string.IsNullOrEmpty(tag)
                     ? nameof(None)
                     : (string)tag
                 : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(ModelTag), "");
@@ -120,7 +120,7 @@ namespace Parquet
         /// <param name="tag">The <see cref="ModelTag"/> to check against the current ModelTag.</param>
         /// <returns><c>true</c> if this and the given instance are identical, ignoring case; otherwise, <c>false</c>.</returns>
         public bool EqualsOrdinalIgnoreCase(ModelTag tag)
-            => string.Compare(tagContent, tag?.tagContent ?? "", StringComparison.OrdinalIgnoreCase) == 0;
+            => string.Equals(tagContent, tag?.tagContent ?? "", StringComparison.OrdinalIgnoreCase);
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="ModelTag"/>.

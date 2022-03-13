@@ -140,7 +140,7 @@ namespace Parquet.Scripts
         public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
             if (string.IsNullOrEmpty(text)
-                || string.Compare(nameof(Unstarted), text, StringComparison.OrdinalIgnoreCase) == 0)
+                || string.Equals(nameof(Unstarted), text, StringComparison.OrdinalIgnoreCase))
             {
                 return Unstarted;
             }

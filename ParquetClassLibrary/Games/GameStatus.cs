@@ -138,7 +138,7 @@ namespace Parquet.Games
         public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
             if (string.IsNullOrEmpty(text)
-                || string.Compare(nameof(Default), text, StringComparison.OrdinalIgnoreCase) == 0)
+                || string.Equals(nameof(Default), text, StringComparison.OrdinalIgnoreCase))
             {
                 return Default.DeepClone();
             }

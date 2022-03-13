@@ -430,7 +430,7 @@ namespace Parquet.Regions
         public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
             if (string.IsNullOrEmpty(text)
-                || string.Compare(nameof(Unused), text, StringComparison.OrdinalIgnoreCase) == 0)
+                || string.Equals(nameof(Unused), text, StringComparison.OrdinalIgnoreCase))
             {
                 return Unused.DeepClone();
             }

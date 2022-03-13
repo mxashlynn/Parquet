@@ -226,7 +226,7 @@ namespace Parquet
         public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
             if (string.IsNullOrEmpty(text)
-                || string.Compare(nameof(None), text, StringComparison.OrdinalIgnoreCase) == 0)
+                || string.Equals(nameof(None), text, StringComparison.OrdinalIgnoreCase))
             {
                 if (row?.Context.CurrentIndex == 0)
                 {

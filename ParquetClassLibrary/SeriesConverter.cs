@@ -79,8 +79,8 @@ namespace Parquet
         {
             var collection = new TCollection();
             if (string.IsNullOrEmpty(text)
-                || string.Compare(nameof(ModelID.None), text, StringComparison.OrdinalIgnoreCase) == 0
-                || string.Compare(nameof(Enumerable.Empty), text, StringComparison.OrdinalIgnoreCase) == 0)
+                || string.Equals(nameof(ModelID.None), text, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nameof(Enumerable.Empty), text, StringComparison.OrdinalIgnoreCase))
             {
                 return collection;
             }

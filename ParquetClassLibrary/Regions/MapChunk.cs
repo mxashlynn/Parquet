@@ -197,7 +197,7 @@ namespace Parquet.Regions
         public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
             if (string.IsNullOrEmpty(text)
-                || string.Compare(nameof(Empty), text, StringComparison.OrdinalIgnoreCase) == 0)
+                || string.Equals(nameof(Empty), text, StringComparison.OrdinalIgnoreCase))
             {
                 return Empty;
             }

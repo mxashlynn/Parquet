@@ -111,7 +111,7 @@ namespace Parquet
         public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
             if (string.IsNullOrEmpty(text)
-                || string.Compare(nameof(Nowhere), text, StringComparison.OrdinalIgnoreCase) == 0)
+                || string.Equals(nameof(Nowhere), text, StringComparison.OrdinalIgnoreCase))
             {
                 return Nowhere;
             }

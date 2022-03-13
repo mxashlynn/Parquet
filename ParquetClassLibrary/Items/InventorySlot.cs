@@ -193,8 +193,8 @@ namespace Parquet.Items
         public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
             if (string.IsNullOrEmpty(text)
-                || string.Compare(nameof(Empty), text, StringComparison.OrdinalIgnoreCase) == 0
-                || string.Compare(nameof(ModelID.None), text, StringComparison.OrdinalIgnoreCase) == 0)
+                || string.Equals(nameof(Empty), text, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nameof(ModelID.None), text, StringComparison.OrdinalIgnoreCase))
             {
                 return Logger.DefaultWithConvertLog(text, nameof(InventorySlot), Empty);
             }

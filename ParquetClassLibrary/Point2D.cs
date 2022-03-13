@@ -168,7 +168,7 @@ namespace Parquet
         public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
             if (string.IsNullOrEmpty(text)
-                || string.Compare(nameof(Origin), text, StringComparison.OrdinalIgnoreCase) == 0)
+                || string.Equals(nameof(Origin), text, StringComparison.OrdinalIgnoreCase))
             {
                 return Origin;
             }
