@@ -3,6 +3,7 @@ Design/* linguist-documentation
 
 # Normalize Line Endings to LineFeed
 *.cs text=auto
+*.csv text=auto
 *.htm text=auto
 *.html text=auto
 *.md text=auto
@@ -34,6 +35,7 @@ LICENSE text=auto
 *.rar filter=lfs diff=lfs merge=lfs -text
 *.svg filter=lfs diff=lfs merge=lfs -text
 *.ttf filter=lfs diff=lfs merge=lfs -text
+*.uge filter=lfs diff=lfs merge=lfs -text
 *.wav filter=lfs diff=lfs merge=lfs -text
 *.xnb filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
