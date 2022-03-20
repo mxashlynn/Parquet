@@ -16,7 +16,7 @@ namespace Parquet
         /// <summary>Separator for encoding the dimensions of <see cref="IGrid{TElement}"/> implementations.</summary>
         public const string DimensionalDelimiter = "×";
 
-        /// <summary>Separator for encoding the dimensions of <see cref="IGrid{TElement}"/> implementations.</summary>
+        /// <summary>Separator for introducting the content of an <see cref="IGrid{TElement}"/> implementations.</summary>
         public const string DimensionalTerminator = "≡";
 
         /// <summary>Separates primitives within serialized <see cref="Point2D"/>s and <see cref="Range{TElement}"/>s.</summary>
