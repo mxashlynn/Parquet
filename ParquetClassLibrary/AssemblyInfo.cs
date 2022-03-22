@@ -33,6 +33,6 @@ namespace Parquet
         /// - Patch: Fixes that do not break the API or its serialized data.
         /// - Build: Procedural updates that do not imply any changes, such as when rebuilding for APK/IPA submission.
         /// </remarks>
-        public static readonly string LibraryVersion = typeof(ModelID).Assembly.GetName().Version.ToString();
+        public static readonly string LibraryVersion = typeof(ModelID).Assembly?.GetName()?.Version?.ToString() ?? "?.?.?.?";
     }
 }
