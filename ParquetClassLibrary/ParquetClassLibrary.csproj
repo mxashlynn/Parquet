@@ -14,10 +14,10 @@
     <Authors>Paige Ashlynn</Authors>
     <Company>Girl Potion</Company>
     <Description>Mechanics and models for 2D building, crafting, and narrative sandbox games.</Description>
-    <Copyright>2018-2021 Paige Ashlynn</Copyright>
+    <Copyright>2018-2022 Paige Ashlynn</Copyright>
     <ApplicationIcon>ParquetIcon.ico</ApplicationIcon>
     <PackageIcon>Parquet Logo Large.png</PackageIcon>
-    <!-- PackageReadmeFile>README.md</PackageReadmeFile -->
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
@@ -30,38 +30,37 @@
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <NoWarn>CS1701;CS1702;CS0809</NoWarn>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
     <RootNamespace>Parquet</RootNamespace>
 
-    <IsPackable>true</IsPackable>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <IncludeSymbols>true</IncludeSymbols>
+    <IsPackable>True</IsPackable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <CopyLocalLockFileAssemblies>True</CopyLocalLockFileAssemblies>
     <Configurations>Debug;Release</Configurations>
     <AnalysisLevel>latest</AnalysisLevel>
-    <DocumentationFile>Parquet.xml</DocumentationFile>
-    <BaseOutputPath>bin\\</BaseOutputPath>
+    <WarningLevel>5</WarningLevel>
+    <Nullable>warnings</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <ErrorReport>send</ErrorReport>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <ErrorReport>send</ErrorReport>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <DefineConstants>DEBUG</DefineConstants>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <WarningLevel>5</WarningLevel>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DefineConstants>TRACE</DefineConstants>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DocumentationFile>Parquet.Documentation.xml</DocumentationFile>
-    <WarningLevel>5</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>
