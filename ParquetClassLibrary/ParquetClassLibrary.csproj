@@ -34,32 +34,31 @@
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <WarningLevel>5</WarningLevel>
+    <Nullable>warnings</Nullable>
     <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
     <RootNamespace>Parquet</RootNamespace>
 
     <IsPackable>True</IsPackable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <CopyLocalLockFileAssemblies>True</CopyLocalLockFileAssemblies>
     <Configurations>Debug;Release</Configurations>
-    <AnalysisLevel>latest</AnalysisLevel>
-    <WarningLevel>5</WarningLevel>
-    <Nullable>warnings</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <ErrorReport>send</ErrorReport>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>DEBUG</DefineConstants>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DefineConstants>TRACE</DefineConstants>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DocumentationFile>Parquet.Documentation.xml</DocumentationFile>
   </PropertyGroup>
 
