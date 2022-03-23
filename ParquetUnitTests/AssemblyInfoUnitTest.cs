@@ -19,6 +19,9 @@ namespace ParquetUnitTests
         #region Values for Tests
         /// <summary>This is the canonical invalid library version string used in serialization tests.</summary>
         private const string invalidLibVersion = "0.0.0.0";
+
+        /// <summary>This is the string used if the library version cannot be loaded.</summary>
+        private const string errorLibVersion = "?.?.?.?";
         #endregion
 
         [Fact]
@@ -31,6 +34,12 @@ namespace ParquetUnitTests
         internal void SupportedLibraryVersionIsNotInvalidTest()
         {
             Assert.NotEqual(invalidLibVersion, AssemblyInfo.LibraryVersion);
+        }
+
+        [Fact]
+        internal void SupportedLibraryVersionWasFoundTest()
+        {
+            Assert.NotEqual(errorLibVersion, AssemblyInfo.LibraryVersion);
         }
     }
 }
