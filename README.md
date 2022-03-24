@@ -10,7 +10,8 @@ Code and documentation are incomplete and under rapid development.  Expect frequ
 
 Design and usage will be [fully documented](https://github.com/mxashlynn/Parquet/tree/master/Documentation) once the [Beta milestone](https://github.com/mxashlynn/Parquet/milestone/3) has been reached.
 
-Development milestone deadlines are tentative right now, but I am currently hoping to have GUI editors complete enough to produce a tech demo sometime this year.
+Development milestone deadlines are tentative right now.
+Because this is one of several side projects that I maintain in addition to my fulltime dayjob, it will be a long time before Parquet is ready.
 
 # Goals
 
