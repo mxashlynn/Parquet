@@ -11,7 +11,7 @@ namespace Parquet
     public static class Delimiters
     {
         // NOTE that currently delimiters are not stored as chars because PronounGroup requires compile-time
-        // delimiter concatenation, which is currently only possible with strings.
+        // delimiter concatenation, which is currently only possible with strings.  (Still true in .NET 6/C# 10.)
 
         /// <summary>Separator for encoding the dimensions of <see cref="IGrid{TElement}"/> implementations.</summary>
         public const string DimensionalDelimiter = "×";
