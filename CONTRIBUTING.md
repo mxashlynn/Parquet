@@ -1,7 +1,15 @@
 # Contributing
 Thank you for your interest in contributing to Parquet!
 
-Because this project is currently primarily a means for the creator, Paige, to expand their
-own coding knowledge, contributions at present are on an invite-only basis.
+This project is released as-is, with no gurantee of future maintenance.
+Work may continue as time allows.
 
-This is likely to change as the project matures, so feel free to check back! 
+This project may be forked in accordance with the license terms
+You may also report issues or suggest improvements, but please
+respect that these may not be applied or acted on.
+
+Because this project is a means for the creator, Paige, to expand their
+own knowledge and experience, contributions at present are invite-only.
+
+However, you're always welcome fork the library and/or use its tools
+in your own projects, provided you respect the licensing.
